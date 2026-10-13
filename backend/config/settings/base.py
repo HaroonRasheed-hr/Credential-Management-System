@@ -5,7 +5,7 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-production')
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
@@ -63,10 +63,7 @@ MIDDLEWARE = [
 # Activated only when DEBUG=True *and* the package is importable. It's a dev-only
 # dependency (see requirements.txt) and is absent from the production image, so the
 # guard keeps production untouched. Surfaces SQL / N+1 query counts locally.
-# NOTE: to render its full UI you must also add debug_toolbar's URLs to
-# config/urls.py (out of scope here) — e.g.
-#   if settings.DEBUG:
-#       urlpatterns += [path('__debug__/', include('debug_toolbar.urls'))]
+DEBUG_TOOLBAR_ENABLED = False
 if DEBUG:
     try:
         import debug_toolbar  # noqa: F401
@@ -76,6 +73,7 @@ if DEBUG:
         INSTALLED_APPS += ['debug_toolbar']
         MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
         INTERNAL_IPS = ['127.0.0.1', 'localhost']
+        DEBUG_TOOLBAR_ENABLED = True
 
 ROOT_URLCONF = 'config.urls'
 
@@ -261,17 +259,12 @@ LOGGING = {
             'formatter': 'detailed',
         },
         'file': {
-            # Rotate at midnight and keep 14 days of history so logs/django.txt
-            # can't grow unbounded. Rotated files are suffixed django.txt.YYYY-MM-DD.
-            # OPS DECISION: if retention is managed by disk size rather than age,
-            # swap this for a size-based rotator, e.g.
-            #   'class': 'logging.handlers.RotatingFileHandler',
-            #   'maxBytes': 50 * 1024 * 1024,  # 50 MB
-            #   'backupCount': 5,
-            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'class': (
+                'logging.FileHandler'
+                if DEBUG
+                else 'logging.handlers.TimedRotatingFileHandler'
+            ),
             'filename': os.path.join(BASE_DIR, 'logs', 'django.txt'),
-            'when': 'midnight',
-            'backupCount': 14,
             'encoding': 'utf-8',
             'delay': False,
             'formatter': 'detailed',
@@ -309,3 +302,9 @@ LOGGING = {
         },
     },
 }
+
+if not DEBUG:
+    LOGGING['handlers']['file'].update({
+        'when': 'midnight',
+        'backupCount': 14,
+    })

@@ -11,6 +11,7 @@ Thumbs.db
 .env*
 backend/.env
 frontend/.env.local
+!.env.example
 
 # Frontend build artifacts
 frontend/node_modules
