@@ -98,7 +98,7 @@ function InitialsAvatar({
         background: member.color,
         fontFamily: POPPINS,
         fontSize: size * 0.36,
-        border: ring ? "2px solid #1a1a1a" : "none",
+        border: ring ? "2px solid #0b1b2b" : "none",
       }}
       title={member.name}
     >
@@ -184,7 +184,7 @@ function EditMemberModal({
       <div
         className="relative w-full max-h-[90vh] overflow-y-auto rounded-t-2xl border px-4 py-6 sm:max-w-[90vw] sm:rounded-2xl sm:px-8 sm:py-10 lg:max-w-[480px]"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           borderColor: "rgba(255,255,255,0.10)",
           boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
         }}
@@ -328,7 +328,7 @@ function AddMemberModal({
       <div
         className="relative w-full max-h-[90vh] overflow-y-auto rounded-t-2xl border px-4 py-6 sm:max-w-[90vw] sm:rounded-2xl sm:px-8 sm:py-10 lg:max-w-[480px]"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           borderColor: "rgba(255,255,255,0.10)",
           boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
         }}
@@ -584,7 +584,7 @@ function TeamCard({ team, onOpen }: { team: Team; onOpen: () => void }) {
               width: 34,
               height: 34,
               background: "rgba(255,255,255,0.12)",
-              border: "2px solid #1a1a1a",
+              border: "2px solid #0b1b2b",
               fontFamily: POPPINS,
             }}
           >
@@ -913,7 +913,7 @@ function AddTeamModal({
     >
       <div
         className="relative w-full max-h-[90vh] overflow-y-auto rounded-t-2xl border px-4 py-6 sm:max-w-[90vw] sm:rounded-2xl sm:px-8 sm:py-10 lg:max-w-[480px]"
-        style={{ background: "#1a1a1a", borderColor: "rgba(255,255,255,0.10)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)" }}
+        style={{ background: "#0b1b2b", borderColor: "rgba(255,255,255,0.10)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)" }}
       >
         <button
           type="button"

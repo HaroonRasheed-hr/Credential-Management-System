@@ -230,7 +230,7 @@ function AddDeviceModal({
       <div
         className="relative flex w-full max-w-[520px] flex-col rounded-2xl border"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           borderColor: "rgba(255,255,255,0.10)",
           boxShadow: "0px 8px 32px 0px rgba(0,0,0,0.70)",
           maxHeight: "85vh",

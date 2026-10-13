@@ -125,7 +125,7 @@ export default function AddAppUserForm({
       <div
         className="relative w-full max-h-[90vh] overflow-y-auto rounded-xl border border-white/10 px-4 py-8 sm:max-w-[640px] sm:rounded-2xl sm:px-8 sm:py-10 md:px-10"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           boxShadow: "0px 24px 64px 0px rgba(0,0,0,0.6)",
           fontFamily: "Poppins, sans-serif",
         }}

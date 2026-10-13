@@ -20,6 +20,27 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  scrollbar-color: rgba(3, 161, 254, 0.35) #0b1b2b;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b1b2b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(3, 161, 254, 0.35);
+  border: 2px solid #0b1b2b;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(3, 161, 254, 0.6);
 }
 
 body {

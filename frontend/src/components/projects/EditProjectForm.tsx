@@ -105,7 +105,7 @@ export default function EditProjectForm({
       <div
         className="relative w-full max-w-[640px] max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 px-8 py-10 md:px-10"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           boxShadow: "0px 24px 64px 0px rgba(0,0,0,0.6)",
           fontFamily: "Poppins, sans-serif",
         }}

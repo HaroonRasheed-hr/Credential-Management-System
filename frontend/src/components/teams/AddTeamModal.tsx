@@ -74,7 +74,7 @@ export default function AddTeamModal({ onClose, onSubmit }: Props) {
       <div
         className="relative w-full max-h-[90vh] overflow-y-auto rounded-t-2xl border px-4 py-6 sm:max-w-[90vw] sm:rounded-2xl sm:px-8 sm:py-10 lg:max-w-[480px]"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           borderColor: "rgba(255,255,255,0.10)",
           boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
         }}
