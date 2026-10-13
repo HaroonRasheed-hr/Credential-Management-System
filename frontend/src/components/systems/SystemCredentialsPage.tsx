@@ -413,7 +413,7 @@ function DeviceModal({
       onClick={(e) => { if (e.target === overlayRef.current && !saving) onClose(); }}
       style={{ position: "fixed", inset: 0, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.70)", backdropFilter: "blur(4px)", padding: "0 16px" }}
     >
-      <div style={{ width: "100%", maxWidth: 520, maxHeight: "calc(100vh - 32px)", overflowY: "auto", borderRadius: 20, border: "1px solid rgba(255,255,255,0.10)", background: "#181818", padding: 24, boxShadow: "0px 8px 40px 0px rgba(0,0,0,0.60)", fontFamily: POPPINS }}>
+      <div style={{ width: "100%", maxWidth: 520, maxHeight: "calc(100vh - 32px)", overflowY: "auto", borderRadius: 20, border: "1px solid rgba(255,255,255,0.10)", background: "#0b1b2b", padding: 24, boxShadow: "0px 8px 40px 0px rgba(0,0,0,0.60)", fontFamily: POPPINS }}>
 
         {/* Header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>

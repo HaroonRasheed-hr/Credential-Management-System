@@ -114,14 +114,14 @@ export default function ProfileDropdown() {
           aria-label="Profile menu"
           className="fixed left-0 right-0 top-[100px] z-50 overflow-hidden border-b border-white/10 backdrop-blur-md sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-3 sm:w-[280px] sm:rounded-2xl sm:border"
           style={{
-            background: "#1a1a1a",
+            background: "#0b1b2b",
             boxShadow: "0px 12px 40px 0px rgba(0,0,0,0.55)",
           }}
         >
           {/* Triangular pointer — desktop/tablet only */}
           <div
             className="absolute right-4 -top-1.5 hidden h-3 w-3 rotate-45 border-l border-t border-white/10 sm:block"
-            style={{ background: "#1a1a1a" }}
+            style={{ background: "#0b1b2b" }}
             aria-hidden="true"
           />
 

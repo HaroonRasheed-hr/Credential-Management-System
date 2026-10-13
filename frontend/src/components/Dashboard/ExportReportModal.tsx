@@ -83,7 +83,7 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
       <div
         className="relative w-full max-w-md rounded-2xl border border-white/10 p-8"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           boxShadow: "0px 24px 64px 0px rgba(0,0,0,0.6)",
           fontFamily: "Poppins, sans-serif",
         }}
@@ -129,14 +129,14 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
               }}
               className="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 pr-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#03A1FE] focus:ring-2 focus:ring-[#03A1FE]/30 disabled:opacity-50 [color-scheme:dark]"
             >
-              <option value={ALL_PROJECTS} style={{ background: "#1a1a1a", color: "#ffffff" }}>
+              <option value={ALL_PROJECTS} style={{ background: "#0b1b2b", color: "#ffffff" }}>
                 {projectsLoading ? "Loading projects…" : "All Projects"}
               </option>
               {projects.map((p) => (
                 <option
                   key={p.id}
                   value={p.id}
-                  style={{ background: "#1a1a1a", color: "#ffffff" }}
+                  style={{ background: "#0b1b2b", color: "#ffffff" }}
                 >
                   {p.name}
                 </option>

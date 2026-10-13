@@ -124,7 +124,7 @@ function EditMemberModal({
       <div
         className="relative w-full max-w-sm rounded-2xl border px-8 py-8"
         style={{
-          background: "#1a1a1a",
+          background: "#0b1b2b",
           borderColor: "rgba(255,255,255,0.10)",
           boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
         }}

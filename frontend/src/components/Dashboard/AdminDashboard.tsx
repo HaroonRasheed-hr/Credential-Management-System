@@ -241,7 +241,7 @@ export default function AdminDashboard() {
       >
         <div
           className="relative w-full max-w-md rounded-2xl border border-white/10 p-8"
-          style={{ background: "#1a1a1a", boxShadow: "0px 24px 64px 0px rgba(0,0,0,0.6)", fontFamily: "Poppins, sans-serif" }}
+          style={{ background: "#0b1b2b", boxShadow: "0px 24px 64px 0px rgba(0,0,0,0.6)", fontFamily: "Poppins, sans-serif" }}
         >
           <button
             type="button"
@@ -446,7 +446,7 @@ export default function AdminDashboard() {
 
         <div
           className="overflow-hidden rounded-2xl border border-white/10 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
-          style={{ background: "#1a1a1a" }}
+          style={{ background: "#0b1b2b" }}
         >
           <div className="overflow-x-auto">
             <table className="w-full min-w-[900px] text-sm">
