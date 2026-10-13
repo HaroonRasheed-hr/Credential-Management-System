@@ -68,7 +68,7 @@ export default function LoginScaleWrapper({ children }: { children: React.ReactN
         position: "fixed",
         inset: 0,
         overflow: "hidden",
-        background: "linear-gradient(180deg, #212121 0%, #000000 100%)",
+        background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)",
       }}
     >
       {/* Canvas: hidden (opacity 0) until scale is computed to prevent full-size flash */}

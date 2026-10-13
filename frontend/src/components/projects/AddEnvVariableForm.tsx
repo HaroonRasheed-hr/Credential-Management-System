@@ -147,7 +147,7 @@ export default function AddEnvVariableForm({
   }
 
   const inputBase =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30";
+    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A1FE] focus:ring-2 focus:ring-[#03A1FE]/30";
 
   return (
     <div
@@ -244,7 +244,7 @@ export default function AddEnvVariableForm({
               />
               {attachedFile ? (
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                  <Paperclip size={15} className="shrink-0 text-[#03A9F4]" />
+                  <Paperclip size={15} className="shrink-0 text-[#03A1FE]" />
                   <span className="flex-1 truncate text-sm text-white/80">
                     {attachedFile.name}
                   </span>
@@ -266,13 +266,13 @@ export default function AddEnvVariableForm({
                   className="flex items-center gap-2 font-semibold transition-all duration-200 hover:brightness-110 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
                   style={{
                     borderRadius: "20px",
-                    border: "1px solid rgba(3,169,244,0.40)",
-                    background: "rgba(3,169,244,0.08)",
+                    border: "1px solid rgba(3, 161, 254,0.40)",
+                    background: "rgba(3, 161, 254,0.08)",
                     fontFamily: "Poppins, sans-serif",
                     fontSize: "14px",
                     cursor: "pointer",
                     padding: "10px 24px",
-                    color: "#03A9F4",
+                    color: "#03A1FE",
                   }}
                 >
                   <Upload size={16} />
@@ -301,13 +301,13 @@ export default function AddEnvVariableForm({
                       className={`px-6 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 disabled:pointer-events-none disabled:opacity-60 ${
                         isSelected
                           ? "border-transparent text-white"
-                          : "bg-white/5 border-white/10 text-white/50 hover:border-[#03A9F4]/60 hover:text-white/80"
+                          : "bg-white/5 border-white/10 text-white/50 hover:border-[#03A1FE]/60 hover:text-white/80"
                       }`}
                       style={
                         isSelected
                           ? {
                               background:
-                                "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                                "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                             }
                           : {}
                       }
@@ -335,7 +335,7 @@ export default function AddEnvVariableForm({
               disabled={isSubmitting}
               className="flex w-full items-center justify-center gap-2 rounded-[20px] px-8 py-3 text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               style={{
-                background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                 boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                 fontFamily: "Poppins, sans-serif",
               }}

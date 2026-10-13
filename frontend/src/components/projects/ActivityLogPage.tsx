@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronRight, User, AlertCircle } from "lucide-react";
 import { usePagination } from "@/hooks/usePagination";
 import Pagination from "@/components/common/Pagination";
+import BrandLogo from "@/components/common/BrandLogo";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import type { ActivityLogEntry } from "@/hooks/useActivityLog";
 import { useSearch, matchesQuery } from "@/context/SearchContext";
@@ -20,7 +21,7 @@ const TABS = [
 ];
 
 const AVATAR_COLORS = [
-  "linear-gradient(135deg, #57C8E7 0%, #3E5FAA 100%)",
+  "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)",
   "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)",
   "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
   "linear-gradient(135deg, #10b981 0%, #059669 100%)",
@@ -47,7 +48,7 @@ function timeAgoStr(ts: string): string {
 type ModuleKey = string;
 
 const MODULE_STYLES: Record<string, { bg: string; color: string; border: string }> = {
-  Project: { bg: "rgba(87,200,231,0.14)", color: "#57C8E7", border: "1px solid rgba(87,200,231,0.28)" },
+  Project: { bg: "rgba(3,161,254,0.14)", color: "#03A1FE", border: "1px solid rgba(3,161,254,0.28)" },
   "Env Variables": { bg: "rgba(59,130,246,0.14)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.28)" },
   "License Keys": { bg: "rgba(251,146,60,0.14)", color: "#fb923c", border: "1px solid rgba(251,146,60,0.28)" },
   "Admin Credentials": { bg: "rgba(168,85,247,0.14)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.28)" },
@@ -72,7 +73,7 @@ function ActionBadge({ action }: { action: ActivityLogEntry["action"] }) {
   const styles: Record<ActivityLogEntry["action"], { bg: string; color: string }> = {
     CREATED: { bg: "rgba(34,197,94,0.12)", color: "#4ade80" },
     ADDED: { bg: "rgba(34,197,94,0.12)", color: "#4ade80" },
-    UPDATED: { bg: "rgba(87,200,231,0.12)", color: "#57C8E7" },
+    UPDATED: { bg: "rgba(3,161,254,0.12)", color: "#03A1FE" },
     DELETED: { bg: "rgba(239,68,68,0.12)", color: "#f87171" },
     REVEALED: { bg: "rgba(251,146,60,0.12)", color: "#fb923c" },
   };
@@ -148,7 +149,7 @@ export function ActivityLogTabContent({ projectId }: ActivityLogTabContentProps 
         {!loading && filtered.length === 0 && (
           <div className="flex flex-col items-center justify-center py-12 text-center">
             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "rgba(255,255,255,0.06)" }}>
-              <User size={22} className="text-[#57C8E7]" />
+              <User size={22} className="text-[#03A1FE]" />
             </div>
             <p style={{ fontFamily: "Poppins, sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.38)" }}>
               {query.trim() && entries.length > 0
@@ -227,9 +228,9 @@ export default function ActivityLogPage() {
   const [activeTab, setActiveTab] = useState<string>("Activity Log");
 
   return (
-    <div className="min-h-screen w-full text-white" style={{ background: "linear-gradient(180deg, #212121 0%, #000000 100%)", fontFamily: "Poppins, sans-serif" }}>
-      <header className="sticky top-0 z-50 flex w-full items-center justify-between bg-black px-8 md:px-16" style={{ height: "100px", boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}>
-        <span className="text-xl font-bold text-white" style={{ fontFamily: "Poppins, sans-serif" }}>xis.ai</span>
+    <div className="min-h-screen w-full text-white" style={{ background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)", fontFamily: "Poppins, sans-serif" }}>
+      <header className="sticky top-0 z-50 flex w-full items-center justify-between bg-[#071421] px-8 md:px-16" style={{ height: "100px", boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}>
+        <BrandLogo />
         <button type="button" aria-label="User profile" className="flex items-center justify-center rounded-full transition-all duration-200 hover:bg-white/10" style={{ width: "42px", height: "42px", background: "rgba(255,255,255,0.10)", border: "1.5px solid rgba(255,255,255,0.15)" }}>
           <User size={20} className="text-white" />
         </button>
@@ -256,7 +257,7 @@ export default function ActivityLogPage() {
               return (
                 <button key={tab} type="button" onClick={() => setActiveTab(tab)}
                   className="relative flex-shrink-0 px-4 pb-3 pt-2 text-sm transition-all duration-200"
-                  style={{ fontFamily: "Poppins, sans-serif", color: isActive ? "#57C8E7" : "rgba(255,255,255,0.45)", fontWeight: isActive ? 600 : 500, background: "transparent", border: "none", cursor: "pointer", borderBottom: isActive ? "2px solid #57C8E7" : "2px solid transparent", marginBottom: "-1px", whiteSpace: "nowrap" }}
+                  style={{ fontFamily: "Poppins, sans-serif", color: isActive ? "#03A1FE" : "rgba(255,255,255,0.45)", fontWeight: isActive ? 600 : 500, background: "transparent", border: "none", cursor: "pointer", borderBottom: isActive ? "2px solid #03A1FE" : "2px solid transparent", marginBottom: "-1px", whiteSpace: "nowrap" }}
                   onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.85)"; }}
                   onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.45)"; }}
                 >{tab}</button>

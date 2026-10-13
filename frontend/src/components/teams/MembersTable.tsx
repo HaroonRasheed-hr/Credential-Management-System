@@ -7,7 +7,7 @@ import type { ApiOrgMember, UpdateMemberInput } from "@/hooks/useTeamDetail";
 const POPPINS = "Poppins, sans-serif";
 
 const AVATAR_COLORS = [
-  "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)",
+  "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)",
   "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)",
   "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
   "linear-gradient(135deg, #10b981 0%, #059669 100%)",
@@ -42,7 +42,7 @@ function Avatar({ name, index }: { name: string; index: number }) {
 function RoleBadge({ role }: { role: "ADMIN" | "DEVELOPER" }) {
   const styles = {
     ADMIN: { bg: "rgba(168,85,247,0.20)", color: "#d8b4fe" },
-    DEVELOPER: { bg: "rgba(59,130,246,0.18)", color: "#03A9F4" },
+    DEVELOPER: { bg: "rgba(59,130,246,0.18)", color: "#03A1FE" },
   };
   const s = styles[role];
   return (
@@ -195,7 +195,7 @@ function EditMemberModal({
                     style={{
                       fontFamily: POPPINS,
                       border: isActive ? "none" : "1px solid rgba(255,255,255,0.12)",
-                      background: isActive ? "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)" : "rgba(255,255,255,0.05)",
+                      background: isActive ? "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)" : "rgba(255,255,255,0.05)",
                       color: isActive ? "#ffffff" : "rgba(255,255,255,0.50)",
                       cursor: "pointer",
                     }}
@@ -224,7 +224,7 @@ function EditMemberModal({
             onClick={handleSave}
             disabled={saving}
             className="flex-1 rounded-full py-2.5 text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-60"
-            style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)", border: "none", cursor: saving ? "not-allowed" : "pointer" }}
+            style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)", border: "none", cursor: saving ? "not-allowed" : "pointer" }}
           >
             {saving ? "Saving…" : "Save"}
           </button>
@@ -458,7 +458,7 @@ export default function MembersTable({
                                 type="button"
                                 onClick={() => handleReveal(member.id)}
                                 disabled={isRevealing}
-                                className="flex-shrink-0 transition-all duration-200 hover:text-[#03A9F4] disabled:opacity-50"
+                                className="flex-shrink-0 transition-all duration-200 hover:text-[#03A1FE] disabled:opacity-50"
                                 style={{
                                   color: "rgba(255,255,255,0.35)",
                                   background: "none",
@@ -550,7 +550,7 @@ export default function MembersTable({
                             onMouseEnter={(e) => {
                               (
                                 e.currentTarget as HTMLButtonElement
-                              ).style.color = "#03A9F4";
+                              ).style.color = "#03A1FE";
                             }}
                             onMouseLeave={(e) => {
                               (

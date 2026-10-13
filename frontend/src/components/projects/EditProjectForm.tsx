@@ -92,7 +92,7 @@ export default function EditProjectForm({
   }
 
   const inputBase =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30 disabled:opacity-60 disabled:cursor-not-allowed";
+    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A1FE] focus:ring-2 focus:ring-[#03A1FE]/30 disabled:opacity-60 disabled:cursor-not-allowed";
 
   return (
     <div
@@ -198,13 +198,13 @@ export default function EditProjectForm({
                       className={`px-6 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 disabled:pointer-events-none disabled:opacity-60 ${
                         isSelected
                           ? "border-transparent text-white"
-                          : "bg-white/5 border-white/10 text-white/50 hover:border-[#03A9F4]/60 hover:text-white/80"
+                          : "bg-white/5 border-white/10 text-white/50 hover:border-[#03A1FE]/60 hover:text-white/80"
                       }`}
                       style={
                         isSelected
                           ? {
                               background:
-                                "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                                "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                             }
                           : {}
                       }
@@ -233,7 +233,7 @@ export default function EditProjectForm({
               disabled={isSubmitting}
               className="flex items-center gap-2 px-8 py-3 rounded-[20px] text-white font-bold text-sm transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
               style={{
-                background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                 boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                 fontFamily: "Poppins, sans-serif",
               }}

@@ -31,7 +31,7 @@ body {
   /* overflow-y is intentionally left as the default (visible/auto)  */
   /* so every page can scroll when content exceeds the viewport.     */
   overflow-x: hidden;
-  background: #000000;
+  background: #06111f;
   color: #ffffff;
   touch-action: manipulation;
 }

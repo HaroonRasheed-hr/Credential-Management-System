@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { Plus, Users, AlertCircle, CheckCircle } from "lucide-react";
@@ -152,7 +152,7 @@ export default function TeamsPage() {
                 className="flex items-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95"
                 style={{
                   borderRadius: "20px",
-                  background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                  background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                   boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                   fontFamily: POPPINS,
                   fontSize: "14px",

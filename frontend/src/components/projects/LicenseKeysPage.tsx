@@ -16,6 +16,7 @@ import {
 import AddLicenseKeyForm from "./AddLicenseKeyForm";
 import { usePagination } from "@/hooks/usePagination";
 import Pagination from "@/components/common/Pagination";
+import BrandLogo from "@/components/common/BrandLogo";
 import { useAuth } from "@/context/AuthContext";
 import { useSearch, matchesQuery } from "@/context/SearchContext";
 import { isAdmin } from "@/lib/auth";
@@ -275,7 +276,7 @@ export function LicenseKeysTabContent({
             className="flex items-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95"
             style={{
               borderRadius: "20px",
-              background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+              background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
               fontFamily: "Poppins, sans-serif",
               fontSize: "14px",
@@ -405,7 +406,7 @@ export function LicenseKeysTabContent({
                             className="flex-shrink-0 transition-all duration-200"
                             style={{ color: "rgba(255,255,255,0.35)", background: "none", border: "none", cursor: "pointer", padding: "4px", borderRadius: "6px", lineHeight: 0 }}
                             aria-label={isRevealed ? "Hide key" : "Show key"}
-                            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#57C8E7"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
+                            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#03A1FE"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
                             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.35)"; (e.currentTarget as HTMLButtonElement).style.background = "none"; }}
                           >
                             {isRevealed ? <EyeOff size={15} /> : <Eye size={15} />}
@@ -414,7 +415,7 @@ export function LicenseKeysTabContent({
                             <button
                               type="button"
                               onClick={() => row.apiId && handleCopy(row.apiId, displayKey)}
-                              className="flex-shrink-0 transition-all duration-200 hover:text-[#57C8E7]"
+                              className="flex-shrink-0 transition-all duration-200 hover:text-[#03A1FE]"
                               style={{
                                 color: copiedId === row.apiId ? "#4ade80" : "rgba(255,255,255,0.35)",
                                 background: "none",
@@ -441,7 +442,7 @@ export function LicenseKeysTabContent({
                         <div className="flex items-center gap-2">
                           <div
                             className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
-                            style={{ background: "linear-gradient(135deg, #57C8E7 0%, #3E5FAA 100%)" }}
+                            style={{ background: "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)" }}
                           >
                             <User size={13} className="text-white" />
                           </div>
@@ -460,7 +461,7 @@ export function LicenseKeysTabContent({
                             className="transition-all duration-200"
                             style={{ color: "rgba(255,255,255,0.40)", background: "none", border: "none", cursor: "pointer", padding: "4px", borderRadius: "6px", lineHeight: 0 }}
                             aria-label="Edit license"
-                            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#57C8E7"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
+                            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#03A1FE"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
                             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.40)"; (e.currentTarget as HTMLButtonElement).style.background = "none"; }}
                           >
                             <Pencil size={15} />
@@ -514,13 +515,13 @@ export default function LicenseKeysPage() {
   return (
     <div
       className="min-h-screen w-full text-white"
-      style={{ background: "linear-gradient(180deg, #212121 0%, #000000 100%)", fontFamily: "Poppins, sans-serif" }}
+      style={{ background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)", fontFamily: "Poppins, sans-serif" }}
     >
       <header
-        className="sticky top-0 z-50 flex w-full items-center justify-between bg-black px-8 md:px-16"
+        className="sticky top-0 z-50 flex w-full items-center justify-between bg-[#071421] px-8 md:px-16"
         style={{ height: "100px", boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}
       >
-        <span className="text-xl font-bold text-white" style={{ fontFamily: "Poppins, sans-serif" }}>xis.ai</span>
+        <BrandLogo />
         <button
           type="button"
           aria-label="User profile"
@@ -557,12 +558,12 @@ export default function LicenseKeysPage() {
                   className="relative flex-shrink-0 px-4 pb-3 pt-2 text-sm transition-all duration-200"
                   style={{
                     fontFamily: "Poppins, sans-serif",
-                    color: isActive ? "#57C8E7" : "rgba(255,255,255,0.45)",
+                    color: isActive ? "#03A1FE" : "rgba(255,255,255,0.45)",
                     fontWeight: isActive ? 600 : 500,
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
-                    borderBottom: isActive ? "2px solid #57C8E7" : "2px solid transparent",
+                    borderBottom: isActive ? "2px solid #03A1FE" : "2px solid transparent",
                     marginBottom: "-1px",
                     whiteSpace: "nowrap",
                   }}
@@ -581,7 +582,7 @@ export default function LicenseKeysPage() {
         ) : (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl" style={{ background: "rgba(255,255,255,0.05)" }}>
-              <Plus size={28} className="text-[#57C8E7]" style={{ transform: "rotate(45deg)" }} />
+              <Plus size={28} className="text-[#03A1FE]" style={{ transform: "rotate(45deg)" }} />
             </div>
             <p style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.40)" }}>{activeTab} coming soon</p>
           </div>

@@ -164,7 +164,7 @@ export default function EditTeamModal({ team, onClose, onSubmit }: Props) {
             className="w-full text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-60 sm:w-auto"
             style={{
               fontFamily: POPPINS,
-              background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+              background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
               border: "none",
               borderRadius: "20px",

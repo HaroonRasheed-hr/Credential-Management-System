@@ -24,14 +24,14 @@ import { useProfile } from "@/hooks/useProfile";
 const CARD =
   "rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]";
 const INPUT =
-  "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-1 focus:ring-[#03A9F4]";
+  "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 outline-none transition-all duration-200 focus:border-[#03A1FE] focus:ring-1 focus:ring-[#03A1FE]";
 const GRADIENT_BTN =
   "inline-flex w-full items-center justify-center gap-2 rounded-[20px] px-8 py-3 font-semibold text-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-all duration-200 hover:brightness-110 disabled:opacity-60 sm:w-auto";
-const GRADIENT_BG = "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)";
+const GRADIENT_BG = "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)";
 
 const ROLE_BADGE: Record<Role, string> = {
   Admin: "bg-purple-500/20 text-purple-300",
-  Developer: "bg-blue-500/20 text-[#03A9F4]",
+  Developer: "bg-blue-500/20 text-[#03A1FE]",
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -73,7 +73,7 @@ function CardHeader({
     <div className="mb-5 flex items-start gap-3">
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-          danger ? "bg-red-500/10 text-red-400" : "bg-white/5 text-[#03A9F4]"
+          danger ? "bg-red-500/10 text-red-400" : "bg-white/5 text-[#03A1FE]"
         }`}
       >
         {icon}
@@ -206,7 +206,7 @@ export default function SettingsPage() {
   // ── Stats ──
   const stats = [
     {
-      icon: <Briefcase className="text-[#03A9F4]" size={20} />,
+      icon: <Briefcase className="text-[#03A1FE]" size={20} />,
       value: profile?.stats.total_projects ?? 0,
       label: "Total Projects",
     },

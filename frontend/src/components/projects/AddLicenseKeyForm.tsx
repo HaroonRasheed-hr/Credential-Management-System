@@ -123,7 +123,7 @@ export default function AddLicenseKeyForm({
   }
 
   const inputBase =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30 disabled:opacity-60 disabled:cursor-not-allowed";
+    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A1FE] focus:ring-2 focus:ring-[#03A1FE]/30 disabled:opacity-60 disabled:cursor-not-allowed";
 
   return (
     <div
@@ -312,7 +312,7 @@ export default function AddLicenseKeyForm({
               disabled={isSubmitting}
               className="flex w-full items-center justify-center gap-2 rounded-[20px] px-8 py-3 text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               style={{
-                background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                 boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                 fontFamily: "Poppins, sans-serif",
               }}

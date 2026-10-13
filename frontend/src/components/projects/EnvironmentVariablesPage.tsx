@@ -18,6 +18,7 @@ import { isAdmin } from "@/lib/auth";
 import { useEnvVariables } from "@/hooks/useEnvVariables";
 import type { EnvVariable as ApiEnvVar } from "@/hooks/useEnvVariables";
 import AddEnvVariableForm from "./AddEnvVariableForm";
+import BrandLogo from "@/components/common/BrandLogo";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -75,9 +76,9 @@ const ENV_BADGE: Record<Environment, { bg: string; color: string; border: string
     border: "1px solid rgba(251,146,60,0.30)",
   },
   Development: {
-    bg: "rgba(87,200,231,0.15)",
-    color: "#57C8E7",
-    border: "1px solid rgba(87,200,231,0.30)",
+    bg: "rgba(3, 161, 254,0.15)",
+    color: "#03A1FE",
+    border: "1px solid rgba(3, 161, 254,0.30)",
   },
 };
 
@@ -221,7 +222,7 @@ export function EnvironmentVariablesTabContent({
             className="flex items-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95"
             style={{
               borderRadius: "20px",
-              background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+              background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
               fontFamily: "Poppins, sans-serif",
               fontSize: "14px",
@@ -330,8 +331,8 @@ export function EnvironmentVariablesTabContent({
                           style={{
                             fontFamily: "'Courier New', Courier, monospace",
                             fontSize: "12px",
-                            background: "rgba(87,200,231,0.10)",
-                            color: "#57C8E7",
+                            background: "rgba(3, 161, 254,0.10)",
+                            color: "#03A1FE",
                             padding: "3px 9px",
                             borderRadius: "6px",
                             whiteSpace: "nowrap",
@@ -348,7 +349,7 @@ export function EnvironmentVariablesTabContent({
                       >
                         {row.attachedFile ? (
                           <div className="flex items-center gap-2">
-                            <Paperclip size={13} style={{ color: "#57C8E7", flexShrink: 0 }} />
+                            <Paperclip size={13} style={{ color: "#03A1FE", flexShrink: 0 }} />
                             <span
                               style={{
                                 fontFamily: "Poppins, sans-serif",
@@ -370,7 +371,7 @@ export function EnvironmentVariablesTabContent({
                               style={{ color: "rgba(255,255,255,0.35)", padding: "4px", lineHeight: 0 }}
                               aria-label={`Download ${row.attachedFile.name}`}
                               onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLAnchorElement).style.color = "#57C8E7";
+                                (e.currentTarget as HTMLAnchorElement).style.color = "#03A1FE";
                                 (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
                               }}
                               onMouseLeave={(e) => {
@@ -403,7 +404,7 @@ export function EnvironmentVariablesTabContent({
                           <div
                             className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
                             style={{
-                              background: "linear-gradient(135deg, #57C8E7 0%, #3E5FAA 100%)",
+                              background: "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)",
                             }}
                           >
                             <User size={13} className="text-white" />
@@ -459,7 +460,7 @@ export function EnvironmentVariablesTabContent({
                             }}
                             aria-label="Edit variable"
                             onMouseEnter={(e) => {
-                              (e.currentTarget as HTMLButtonElement).style.color = "#57C8E7";
+                              (e.currentTarget as HTMLButtonElement).style.color = "#03A1FE";
                               (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)";
                             }}
                             onMouseLeave={(e) => {
@@ -536,17 +537,15 @@ export default function EnvironmentVariablesPage() {
     <div
       className="min-h-screen w-full text-white"
       style={{
-        background: "linear-gradient(180deg, #212121 0%, #000000 100%)",
+        background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)",
         fontFamily: "Poppins, sans-serif",
       }}
     >
       <header
-        className="sticky top-0 z-50 flex w-full items-center justify-between bg-black px-8 md:px-16"
+        className="sticky top-0 z-50 flex w-full items-center justify-between bg-[#071421] px-8 md:px-16"
         style={{ height: "100px", boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}
       >
-        <span className="text-xl font-bold text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
-          xis.ai
-        </span>
+        <BrandLogo />
         <button
           type="button"
           aria-label="User profile"
@@ -601,12 +600,12 @@ export default function EnvironmentVariablesPage() {
                   className="relative flex-shrink-0 px-4 pb-3 pt-2 text-sm transition-all duration-200"
                   style={{
                     fontFamily: "Poppins, sans-serif",
-                    color: isActive ? "#57C8E7" : "rgba(255,255,255,0.45)",
+                    color: isActive ? "#03A1FE" : "rgba(255,255,255,0.45)",
                     fontWeight: isActive ? 600 : 500,
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
-                    borderBottom: isActive ? "2px solid #57C8E7" : "2px solid transparent",
+                    borderBottom: isActive ? "2px solid #03A1FE" : "2px solid transparent",
                     marginBottom: "-1px",
                     whiteSpace: "nowrap",
                   }}
@@ -632,7 +631,7 @@ export default function EnvironmentVariablesPage() {
               className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl"
               style={{ background: "rgba(255,255,255,0.05)" }}
             >
-              <Plus size={28} className="text-[#57C8E7]" style={{ transform: "rotate(45deg)" }} />
+              <Plus size={28} className="text-[#03A1FE]" style={{ transform: "rotate(45deg)" }} />
             </div>
             <p style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.40)" }}>
               {activeTab} coming soon

@@ -82,9 +82,9 @@ export default function AllNotificationsPage() {
               <span
                 className="rounded-full px-3 py-1 text-sm font-semibold"
                 style={{
-                  background: "rgba(3,169,244,0.15)",
-                  color: "#03A9F4",
-                  border: "1px solid rgba(3,169,244,0.25)",
+                  background: "rgba(3, 161, 254,0.15)",
+                  color: "#03A1FE",
+                  border: "1px solid rgba(3, 161, 254,0.25)",
                 }}
               >
                 {activities.length}

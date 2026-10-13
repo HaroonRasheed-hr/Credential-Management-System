@@ -70,7 +70,7 @@ const FIELD_CONFIG: FieldConfig[] = [
 ];
 
 const POPPINS = "Poppins, sans-serif";
-const GRADIENT = "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)";
+const GRADIENT = "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)";
 
 // ── Single credential field row ──────────────────────────────────────────────
 
@@ -119,7 +119,7 @@ function CredentialFieldRow({
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#03A9F4]/50 sm:w-56"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#03A1FE]/50 sm:w-56"
             style={{ fontFamily: POPPINS }}
             aria-label={field.label}
             autoComplete="off"
@@ -137,7 +137,7 @@ function CredentialFieldRow({
                     : POPPINS,
                 fontWeight: field.alwaysVisible ? 700 : 400,
                 color: field.alwaysVisible
-                  ? "#03A9F4"
+                  ? "#03A1FE"
                   : isVisible
                     ? "rgba(255,255,255,0.85)"
                     : "rgba(255,255,255,0.40)",
@@ -152,7 +152,7 @@ function CredentialFieldRow({
               <button
                 type="button"
                 onClick={onToggleReveal}
-                className="flex-shrink-0 rounded-md p-1 text-gray-400 transition-all duration-200 hover:bg-white/10 hover:text-[#03A9F4]"
+                className="flex-shrink-0 rounded-md p-1 text-gray-400 transition-all duration-200 hover:bg-white/10 hover:text-[#03A1FE]"
                 aria-label={revealed ? "Hide value" : "Reveal value"}
               >
                 {revealed ? <EyeOff size={15} /> : <Eye size={15} />}
@@ -298,17 +298,17 @@ function AddDeviceModal({
                   onClick={() => setSelectedId(device.id)}
                   className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all duration-150"
                   style={{
-                    background: isSelected ? "rgba(3,169,244,0.10)" : "transparent",
-                    border: isSelected ? "1px solid rgba(3,169,244,0.30)" : "1px solid transparent",
+                    background: isSelected ? "rgba(3, 161, 254,0.10)" : "transparent",
+                    border: isSelected ? "1px solid rgba(3, 161, 254,0.30)" : "1px solid transparent",
                     cursor: "pointer",
                     marginBottom: 4,
                   }}
                 >
                   <div
                     className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "rgba(3,169,244,0.12)" }}
+                    style={{ background: "rgba(3, 161, 254,0.12)" }}
                   >
-                    <Monitor size={16} color="#03A9F4" />
+                    <Monitor size={16} color="#03A1FE" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-white" style={{ fontFamily: POPPINS }}>
@@ -320,7 +320,7 @@ function AddDeviceModal({
                       </p>
                     )}
                   </div>
-                  {isSelected && <Check size={16} color="#03A9F4" className="flex-shrink-0" />}
+                  {isSelected && <Check size={16} color="#03A1FE" className="flex-shrink-0" />}
                 </button>
               );
             })
@@ -488,7 +488,7 @@ function DeviceListSection({
         {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 size={24} color="#03A9F4" className="animate-spin" />
+            <Loader2 size={24} color="#03A1FE" className="animate-spin" />
           </div>
         ) : error ? (
           <div className="flex items-center gap-3 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3">
@@ -527,9 +527,9 @@ function DeviceListSection({
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     <div
                       className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full"
-                      style={{ background: "rgba(3,169,244,0.12)" }}
+                      style={{ background: "rgba(3, 161, 254,0.12)" }}
                     >
-                      <Monitor size={14} color="#03A9F4" />
+                      <Monitor size={14} color="#03A1FE" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-white" style={{ fontFamily: POPPINS }}>

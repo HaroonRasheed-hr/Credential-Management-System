@@ -24,7 +24,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       <div
         className="flex min-h-screen w-full items-center justify-center text-white"
         style={{
-          background: "linear-gradient(180deg, #212121 0%, #000000 100%)",
+          background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)",
           fontFamily: "Poppins, sans-serif",
         }}
       >

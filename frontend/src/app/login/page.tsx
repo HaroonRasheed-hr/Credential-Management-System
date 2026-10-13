@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import LoginForm from "@/components/login/LoginForm";
+import BrandLogo from "@/components/common/BrandLogo";
 
 export const metadata: Metadata = {
-  title: "Login – xis.ai",
-  description: "Sign in to your xis.ai account",
+  title: "Login – Credential Management System",
+  description: "Sign in to the Credential Management System",
 };
 
 export default function LoginPage() {
@@ -16,7 +17,7 @@ export default function LoginPage() {
         width: "100vw",
         height: "100vh",
         overflow: "hidden",
-        background: "linear-gradient(180deg, #212121 0%, #000000 100%)",
+        background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)",
       }}
     >
       {/* Responsive overrides (inline styles can't host media queries) */}
@@ -61,16 +62,7 @@ export default function LoginPage() {
           overflow: "hidden",
         }}
       >
-        {/* XIS logo */}
-        <div style={{ width: "128px", height: "47px", position: "relative", flexShrink: 0 }}>
-          <Image
-            src="/images/xis-logo.png"
-            alt="xis.ai logo"
-            fill
-            style={{ objectFit: "contain", objectPosition: "left center" }}
-            priority
-          />
-        </div>
+        <BrandLogo />
 
         {/* Tagline */}
         <p

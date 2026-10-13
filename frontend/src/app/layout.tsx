@@ -10,13 +10,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Project Credentials Management Portal",
+  title: "Credential Management System",
   description:
     "Securely manage environment variables, license keys and admin credentials across projects.",
   icons: {
-    icon: "/images/xis-logo.png",
-    shortcut: "/images/xis-logo.png",
-    apple: "/images/xis-logo.png",
+    icon: "/images/credential-management-logo.png",
+    shortcut: "/images/credential-management-logo.png",
+    apple: "/images/credential-management-logo.png",
   },
 };
 

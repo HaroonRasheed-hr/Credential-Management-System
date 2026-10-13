@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
+import BrandLogo from "@/components/common/BrandLogo";
 import ProfileDropdown from "@/components/common/ProfileDropdown";
 import { useSearch } from "@/context/SearchContext";
 import { useAuth } from "@/context/AuthContext";
@@ -149,21 +149,14 @@ export default function DashboardHeader() {
       {/* ── Main header bar ──────────────────────────────────────────────── */}
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 w-full bg-black"
+        className="sticky top-0 z-50 w-full bg-[#071421]"
         style={{ boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}
       >
         <div className="flex h-[100px] items-center justify-between gap-4 px-4 sm:px-8 md:px-12 lg:px-16">
           {/* Left: Logo + desktop nav links */}
           <div className="flex items-center gap-6 lg:gap-8">
             <Link href={user?.role === "Developer" ? "/dashboard/projects" : "/dashboard"}>
-              <Image
-                src="/images/xis-logo.png"
-                alt="xis.ai"
-                width={120}
-                height={40}
-                priority
-                className="h-8 w-auto sm:h-10"
-              />
+              <BrandLogo />
             </Link>
 
             {/* Nav links — desktop only (lg+) */}
@@ -242,7 +235,7 @@ export default function DashboardHeader() {
                 onClick={() => setIsMenuOpen(false)}
                 className={`flex min-h-[56px] w-full items-center border-b border-white/10 text-base font-medium transition-all duration-200 last:border-b-0 ${
                   link.isActive(pathname)
-                    ? "text-[#57C8E7]"
+                    ? "text-[#03A1FE]"
                     : "text-gray-400 active:text-white"
                 }`}
                 style={{ textDecoration: "none" }}

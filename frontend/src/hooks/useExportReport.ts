@@ -56,7 +56,7 @@ export function useExportReport(): UseExportReportReturn {
         response.headers
           .get("Content-Disposition")
           ?.match(/filename="?([^"]+)"?/)?.[1] ??
-        `xisai_activity_report_${fromDate}_to_${toDate}.pdf`;
+        `credential_management_activity_report_${fromDate}_to_${toDate}.pdf`;
 
       const objectUrl = URL.createObjectURL(blob);
       const anchor = document.createElement("a");

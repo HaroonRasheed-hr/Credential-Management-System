@@ -18,6 +18,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useSearch, matchesQuery } from "@/context/SearchContext";
 import { isAdmin } from "@/lib/auth";
 import { useTeamMembers } from "@/hooks/useTeamMembers";
+import BrandLogo from "@/components/common/BrandLogo";
 import { useOrgMembers, type OrgMember } from "@/hooks/useOrgMembers";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -33,7 +34,7 @@ const TABS = [
 ];
 
 const AVATAR_COLORS = [
-  "linear-gradient(135deg, #57C8E7 0%, #3E5FAA 100%)",
+  "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)",
   "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)",
   "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
   "linear-gradient(135deg, #10b981 0%, #059669 100%)",
@@ -56,7 +57,7 @@ function getInitials(name: string): string {
 function RoleBadge({ role }: { role: "ADMIN" | "DEVELOPER" }) {
   const styles = {
     ADMIN: { bg: "rgba(168,85,247,0.15)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.30)" },
-    DEVELOPER: { bg: "rgba(87,200,231,0.15)", color: "#57C8E7", border: "1px solid rgba(87,200,231,0.30)" },
+    DEVELOPER: { bg: "rgba(3, 161, 254,0.15)", color: "#03A1FE", border: "1px solid rgba(3, 161, 254,0.30)" },
   };
   const s = styles[role];
   return (
@@ -200,8 +201,8 @@ function AddTeamMemberModal({ availableMembers, onClose, onAdd }: AddTeamMemberM
                   onClick={() => { setSelectedId(member.userId); setError(""); }}
                   className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all duration-150"
                   style={{
-                    background: isSelected ? "rgba(87,200,231,0.10)" : "transparent",
-                    border: isSelected ? "1px solid rgba(87,200,231,0.30)" : "1px solid transparent",
+                    background: isSelected ? "rgba(3, 161, 254,0.10)" : "transparent",
+                    border: isSelected ? "1px solid rgba(3, 161, 254,0.30)" : "1px solid transparent",
                     cursor: "pointer",
                     marginBottom: 4,
                   }}
@@ -238,7 +239,7 @@ function AddTeamMemberModal({ availableMembers, onClose, onAdd }: AddTeamMemberM
               onClick={handleAdd}
               disabled={adding || !selected}
               className="flex-1 rounded-full py-2.5 text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-50"
-              style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)", border: "none", cursor: adding || !selected ? "not-allowed" : "pointer" }}
+              style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)", border: "none", cursor: adding || !selected ? "not-allowed" : "pointer" }}
             >
               {adding ? "Adding…" : "Add to Project"}
             </button>
@@ -377,7 +378,7 @@ export function TeamTabContent({ projectId, readOnly = false }: TeamTabContentPr
           </h2>
           <span
             className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
-            style={{ background: "rgba(87,200,231,0.15)", color: "#57C8E7", border: "1px solid rgba(87,200,231,0.25)", fontFamily: POPPINS }}
+            style={{ background: "rgba(3, 161, 254,0.15)", color: "#03A1FE", border: "1px solid rgba(3, 161, 254,0.25)", fontFamily: POPPINS }}
           >
             {allRows.length}
           </span>
@@ -387,7 +388,7 @@ export function TeamTabContent({ projectId, readOnly = false }: TeamTabContentPr
             type="button"
             onClick={() => setShowModal(true)}
             className="flex items-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95"
-            style={{ borderRadius: "20px", background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", fontFamily: POPPINS, fontSize: "14px", border: "none", cursor: "pointer", padding: "12px 28px" }}
+            style={{ borderRadius: "20px", background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", fontFamily: POPPINS, fontSize: "14px", border: "none", cursor: "pointer", padding: "12px 28px" }}
           >
             <Plus size={18} strokeWidth={2.5} />
             Add Team Member
@@ -428,7 +429,7 @@ export function TeamTabContent({ projectId, readOnly = false }: TeamTabContentPr
           {displayRows.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "rgba(255,255,255,0.06)" }}>
-                <User size={24} className="text-[#57C8E7]" />
+                <User size={24} className="text-[#03A1FE]" />
               </div>
               <p style={{ fontFamily: POPPINS, fontSize: "14px", color: "rgba(255,255,255,0.38)" }}>
                 {query.trim() && allRows.length > 0
@@ -535,9 +536,9 @@ export default function TeamPage() {
   const [activeTab, setActiveTab] = useState<string>("Team");
 
   return (
-    <div className="min-h-screen w-full text-white" style={{ background: "linear-gradient(180deg, #212121 0%, #000000 100%)", fontFamily: POPPINS }}>
-      <header className="sticky top-0 z-50 flex w-full items-center justify-between bg-black px-8 md:px-16" style={{ height: "100px", boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}>
-        <span className="text-xl font-bold text-white" style={{ fontFamily: POPPINS }}>xis.ai</span>
+    <div className="min-h-screen w-full text-white" style={{ background: "linear-gradient(180deg, #0D2238 0%, #06111F 100%)", fontFamily: POPPINS }}>
+      <header className="sticky top-0 z-50 flex w-full items-center justify-between bg-[#071421] px-8 md:px-16" style={{ height: "100px", boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.25)" }}>
+        <BrandLogo />
         <button type="button" aria-label="User profile" className="flex items-center justify-center rounded-full transition-all duration-200 hover:bg-white/10" style={{ width: "42px", height: "42px", background: "rgba(255,255,255,0.10)", border: "1.5px solid rgba(255,255,255,0.15)" }}>
           <User size={20} className="text-white" />
         </button>
@@ -564,7 +565,7 @@ export default function TeamPage() {
               return (
                 <button key={tab} type="button" onClick={() => setActiveTab(tab)}
                   className="relative flex-shrink-0 px-4 pb-3 pt-2 text-sm transition-all duration-200"
-                  style={{ fontFamily: POPPINS, color: isActive ? "#57C8E7" : "rgba(255,255,255,0.45)", fontWeight: isActive ? 600 : 500, background: "transparent", border: "none", cursor: "pointer", borderBottom: isActive ? "2px solid #57C8E7" : "2px solid transparent", marginBottom: "-1px", whiteSpace: "nowrap" }}
+                  style={{ fontFamily: POPPINS, color: isActive ? "#03A1FE" : "rgba(255,255,255,0.45)", fontWeight: isActive ? 600 : 500, background: "transparent", border: "none", cursor: "pointer", borderBottom: isActive ? "2px solid #03A1FE" : "2px solid transparent", marginBottom: "-1px", whiteSpace: "nowrap" }}
                   onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.85)"; }}
                   onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.45)"; }}
                 >{tab}</button>
@@ -578,7 +579,7 @@ export default function TeamPage() {
         ) : (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl" style={{ background: "rgba(255,255,255,0.05)" }}>
-              <Plus size={28} className="text-[#57C8E7]" style={{ transform: "rotate(45deg)" }} />
+              <Plus size={28} className="text-[#03A1FE]" style={{ transform: "rotate(45deg)" }} />
             </div>
             <p style={{ fontFamily: POPPINS, fontSize: "15px", color: "rgba(255,255,255,0.40)" }}>{activeTab} coming soon</p>
           </div>

@@ -113,7 +113,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
             style={{
               background: isArchived
                 ? "transparent"
-                : "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                : "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
               color: "#ffffff",
             }}
           >
@@ -137,13 +137,13 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
                   className="relative flex-shrink-0 min-h-[44px] px-3 pb-2 pt-1.5 text-xs font-medium transition-all duration-200 sm:px-4 sm:pb-3 sm:pt-2 sm:text-sm"
                   style={{
                     fontFamily: "Poppins, sans-serif",
-                    color: isActive ? "#03A9F4" : "rgba(255,255,255,0.45)",
+                    color: isActive ? "#03A1FE" : "rgba(255,255,255,0.45)",
                     fontWeight: isActive ? 600 : 500,
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
                     borderBottom: isActive
-                      ? "2px solid #03A9F4"
+                      ? "2px solid #03A1FE"
                       : "2px solid transparent",
                     marginBottom: "-1px",
                   }}
@@ -214,7 +214,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
                     Created By
                   </span>
                   <div className="flex items-center gap-2">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)" }}>
+                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)" }}>
                       <User size={14} className="text-white" />
                     </div>
                     <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.90)", fontWeight: 500 }}>
@@ -237,7 +237,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
                     style={{
                       background: isArchived
                         ? "transparent"
-                        : "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                        : "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                       color: "#ffffff",
                     }}
                   >
@@ -250,7 +250,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
                     Total Team Members
                   </span>
                   <div className="flex items-center gap-2">
-                    <Users size={18} className="text-[#03A9F4]" />
+                    <Users size={18} className="text-[#03A1FE]" />
                     <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.90)", fontWeight: 500 }}>
                       {project.teamMembers} members
                     </span>
@@ -271,7 +271,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
                       minWidth: "180px",
                       height: "52px",
                       borderRadius: "20px",
-                      background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                      background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                       boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                       fontFamily: "Poppins, sans-serif",
                       fontSize: "16px",
@@ -293,7 +293,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
                       minWidth: "180px",
                       height: "52px",
                       borderRadius: "20px",
-                      background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                      background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                       boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                       fontFamily: "Poppins, sans-serif",
                       fontSize: "16px",

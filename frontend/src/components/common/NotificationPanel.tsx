@@ -91,7 +91,7 @@ export default function NotificationPanel() {
                 <button
                   type="button"
                   onClick={markAllRead}
-                  className="text-xs font-medium text-[#03A9F4] transition-all duration-200 hover:underline"
+                  className="text-xs font-medium text-[#03A1FE] transition-all duration-200 hover:underline"
                 >
                   Mark all as read
                 </button>
@@ -117,13 +117,13 @@ export default function NotificationPanel() {
                         isLast ? "" : "border-b border-white/5"
                       }`}
                       style={{
-                        background: n.read ? "transparent" : "rgba(3,169,244,0.05)",
+                        background: n.read ? "transparent" : "rgba(3, 161, 254,0.05)",
                       }}
                     >
                       {/* Unread dot on left edge */}
                       {!n.read && (
                         <span
-                          className="absolute left-1.5 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#03A9F4]"
+                          className="absolute left-1.5 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#03A1FE]"
                           aria-hidden="true"
                         />
                       )}
@@ -169,7 +169,7 @@ export default function NotificationPanel() {
                   setIsOpen(false);
                   router.push("/dashboard/notifications");
                 }}
-                className="text-xs font-bold text-[#03A9F4] transition-all duration-200 hover:underline"
+                className="text-xs font-bold text-[#03A1FE] transition-all duration-200 hover:underline"
               >
                 View All Notifications
               </button>

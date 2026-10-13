@@ -49,7 +49,7 @@ interface FormData {
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const AVATAR_COLORS = [
-  "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)",
+  "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)",
   "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)",
   "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
   "linear-gradient(135deg, #10b981 0%, #059669 100%)",
@@ -110,7 +110,7 @@ function InitialsAvatar({
 function RoleBadge({ role }: { role: MemberRole }) {
   const styles: Record<MemberRole, { bg: string; color: string }> = {
     Admin: { bg: "rgba(168,85,247,0.20)", color: "#d8b4fe" },
-    Developer: { bg: "rgba(59,130,246,0.18)", color: "#03A9F4" },
+    Developer: { bg: "rgba(59,130,246,0.18)", color: "#03A1FE" },
     Viewer: { bg: "rgba(255,255,255,0.10)", color: "#d1d5db" },
   };
   const s = styles[role];
@@ -213,7 +213,7 @@ function EditMemberModal({
 
           <div>
             <label className="mb-2 block text-sm font-medium" style={{ fontFamily: POPPINS, color: "rgba(255,255,255,0.65)" }}>Email</label>
-            <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors((p) => ({ ...p, email: "" })); }} placeholder="user@xis.ai" className={fieldBase} style={fieldStyle} />
+            <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors((p) => ({ ...p, email: "" })); }} placeholder="user@example.com" className={fieldBase} style={fieldStyle} />
             {errors.email && <p className="mt-1.5 text-xs text-red-400">{errors.email}</p>}
           </div>
 
@@ -235,8 +235,8 @@ function EditMemberModal({
                 const isActive = role === r;
                 return (
                   <button key={r} type="button" onClick={() => setRole(r)} className="flex-1 rounded-full py-2.5 text-sm font-semibold transition-all duration-200"
-                    style={{ fontFamily: POPPINS, border: isActive ? "none" : "1px solid rgba(255,255,255,0.12)", background: isActive ? "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)" : "rgba(255,255,255,0.05)", color: isActive ? "#ffffff" : "rgba(255,255,255,0.50)", cursor: "pointer" }}
-                    onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.borderColor = "#03A9F4"; }}
+                    style={{ fontFamily: POPPINS, border: isActive ? "none" : "1px solid rgba(255,255,255,0.12)", background: isActive ? "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)" : "rgba(255,255,255,0.05)", color: isActive ? "#ffffff" : "rgba(255,255,255,0.50)", cursor: "pointer" }}
+                    onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.borderColor = "#03A1FE"; }}
                     onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
                   >{r}</button>
                 );
@@ -251,7 +251,7 @@ function EditMemberModal({
             Cancel
           </button>
           <button type="button" onClick={handleSubmit} className="w-full text-sm font-bold text-white transition-all duration-200 hover:brightness-110 sm:w-auto"
-            style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", border: "none", borderRadius: "20px", padding: "12px 40px", cursor: "pointer" }}>
+            style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", border: "none", borderRadius: "20px", padding: "12px 40px", cursor: "pointer" }}>
             Update Member
           </button>
         </div>
@@ -400,7 +400,7 @@ function AddMemberModal({
               type="email"
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
-              placeholder="user@xis.ai"
+              placeholder="user@example.com"
               className={fieldBase}
               style={fieldStyle}
             />
@@ -464,7 +464,7 @@ function AddMemberModal({
                         ? "none"
                         : "1px solid rgba(255,255,255,0.12)",
                       background: isActive
-                        ? "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)"
+                        ? "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)"
                         : "rgba(255,255,255,0.05)",
                       color: isActive ? "#ffffff" : "rgba(255,255,255,0.50)",
                       cursor: "pointer",
@@ -472,7 +472,7 @@ function AddMemberModal({
                     onMouseEnter={(e) => {
                       if (!isActive)
                         (e.currentTarget as HTMLButtonElement).style.borderColor =
-                          "#03A9F4";
+                          "#03A1FE";
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive)
@@ -511,7 +511,7 @@ function AddMemberModal({
             className="w-full text-sm font-bold text-white transition-all duration-200 hover:brightness-110 sm:w-auto"
             style={{
               fontFamily: POPPINS,
-              background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+              background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
               border: "none",
               borderRadius: "20px",
@@ -547,7 +547,7 @@ function TeamCard({ team, onOpen }: { team: Team; onOpen: () => void }) {
         cursor: "pointer",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "#03A9F4";
+        e.currentTarget.style.borderColor = "#03A1FE";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)";
@@ -760,7 +760,7 @@ function MembersTable({
                         <button
                           type="button"
                           onClick={() => toggleReveal(member.id)}
-                          className="flex-shrink-0 transition-all duration-200 hover:text-[#03A9F4]"
+                          className="flex-shrink-0 transition-all duration-200 hover:text-[#03A1FE]"
                           style={{
                             color: "rgba(255,255,255,0.35)",
                             background: "none",
@@ -828,7 +828,7 @@ function MembersTable({
                           aria-label={`Edit ${member.name}`}
                           onMouseEnter={(e) => {
                             (e.currentTarget as HTMLButtonElement).style.color =
-                              "#03A9F4";
+                              "#03A1FE";
                           }}
                           onMouseLeave={(e) => {
                             (e.currentTarget as HTMLButtonElement).style.color =
@@ -885,7 +885,7 @@ function MembersTable({
 
 const TEAM_ICONS: { value: "brain" | "code"; label: string; bg: string }[] = [
   { value: "brain", label: "AI / Research", bg: "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)" },
-  { value: "code",  label: "Engineering",   bg: "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)" },
+  { value: "code",  label: "Engineering",   bg: "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)" },
 ];
 
 function AddTeamModal({
@@ -956,8 +956,8 @@ function AddTeamModal({
                     onClick={() => setSelected(opt)}
                     className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200"
                     style={{
-                      background: isActive ? "rgba(3,169,244,0.10)" : "rgba(255,255,255,0.04)",
-                      border: isActive ? "1px solid #03A9F4" : "1px solid rgba(255,255,255,0.10)",
+                      background: isActive ? "rgba(3, 161, 254,0.10)" : "rgba(255,255,255,0.04)",
+                      border: isActive ? "1px solid #03A1FE" : "1px solid rgba(255,255,255,0.10)",
                       cursor: "pointer",
                     }}
                   >
@@ -978,7 +978,7 @@ function AddTeamModal({
             Cancel
           </button>
           <button type="button" onClick={handleSubmit} className="w-full text-sm font-bold text-white transition-all duration-200 hover:brightness-110 sm:w-auto"
-            style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", border: "none", borderRadius: "20px", padding: "12px 40px", cursor: "pointer" }}>
+            style={{ fontFamily: POPPINS, background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", border: "none", borderRadius: "20px", padding: "12px 40px", cursor: "pointer" }}>
             Create Team
           </button>
         </div>
@@ -1199,7 +1199,7 @@ export default function TeamsPage() {
                   className="flex items-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95"
                   style={{
                     borderRadius: "20px",
-                    background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                    background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                     boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                     fontFamily: POPPINS,
                     fontSize: "14px",
@@ -1295,7 +1295,7 @@ export default function TeamsPage() {
                   style={{
                     borderRadius: "20px",
                     background:
-                      "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                      "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                     boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                     fontFamily: POPPINS,
                     fontSize: "14px",

@@ -9,7 +9,7 @@ const POPPINS = "Poppins, sans-serif";
 
 const TYPE_PRESET: Record<TeamType, { bg: string; icon: "brain" | "code" | "shield" }> = {
   AI_RESEARCH: { bg: "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)", icon: "brain" },
-  ENGINEERING: { bg: "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)", icon: "code" },
+  ENGINEERING: { bg: "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)", icon: "code" },
   ADMIN:       { bg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", icon: "shield" },
 };
 
@@ -76,7 +76,7 @@ export default function TeamCard({
         padding: "24px",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "#03A9F4";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "#03A1FE";
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLDivElement).style.borderColor =
@@ -144,11 +144,11 @@ export default function TeamCard({
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.color = "#03A9F4";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#03A1FE";
                   (e.currentTarget as HTMLButtonElement).style.borderColor =
-                    "#03A9F4";
+                    "#03A1FE";
                   (e.currentTarget as HTMLButtonElement).style.background =
-                    "rgba(3,169,244,0.10)";
+                    "rgba(3, 161, 254,0.10)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLButtonElement).style.color =

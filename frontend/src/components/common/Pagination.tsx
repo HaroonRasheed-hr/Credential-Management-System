@@ -47,9 +47,9 @@ function buildPageSequence(
 const BASE =
   "flex h-9 min-w-[36px] items-center justify-center rounded-xl border text-sm font-medium transition-all duration-200 select-none";
 
-const INACTIVE = `${BASE} bg-white/5 border-white/10 text-white/50 hover:border-[#03A9F4] hover:text-white cursor-pointer`;
+const INACTIVE = `${BASE} bg-white/5 border-white/10 text-white/50 hover:border-[#03A1FE] hover:text-white cursor-pointer`;
 const DISABLED = `${BASE} bg-white/5 border-white/10 text-white/30 opacity-40 cursor-not-allowed`;
-const NAV_ACTIVE = `${BASE} bg-white/5 border-white/10 text-white/50 hover:border-[#03A9F4] hover:text-white cursor-pointer`;
+const NAV_ACTIVE = `${BASE} bg-white/5 border-white/10 text-white/50 hover:border-[#03A1FE] hover:text-white cursor-pointer`;
 
 export default function Pagination({
   currentPage,
@@ -125,7 +125,7 @@ export default function Pagination({
                   item === currentPage
                     ? {
                         background:
-                          "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                          "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                       }
                     : {}
                 }

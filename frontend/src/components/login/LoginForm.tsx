@@ -144,7 +144,7 @@ export default function LoginForm() {
           width: "100%",
           height: "50px",
           borderRadius: "10px",
-          background: "rgba(3, 169, 244, 1)",
+          background: "rgba(3, 161, 254, 1)",
           fontFamily: "Poppins",
           fontWeight: 700,
           fontSize: "16px",

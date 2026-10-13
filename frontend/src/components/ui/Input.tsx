@@ -50,7 +50,7 @@ export default function Input({ id, label, error, type, ...rest }: InputProps) {
             boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
             transition: "border-color 150ms ease, box-shadow 150ms ease",
           }}
-          className="placeholder-gray-400 focus:border-[#03A9F4] focus:shadow-[0_0_0_3px_rgba(3,169,244,0.20)]"
+          className="placeholder-gray-400 focus:border-[#03A1FE] focus:shadow-[0_0_0_3px_rgba(3, 161, 254,0.20)]"
           {...rest}
         />
         {isPassword && (

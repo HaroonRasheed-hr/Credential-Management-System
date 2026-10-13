@@ -122,7 +122,7 @@ export default function ProjectsDashboard() {
             className="flex h-[35px] w-full items-center justify-center gap-2 px-8 py-4 text-base font-bold text-white transition-all duration-200 hover:scale-[1.02] hover:brightness-110 sm:h-[55px] sm:max-w-[230px] sm:text-lg"
             style={{
               borderRadius: "20px",
-              background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+              background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
             }}
           >
@@ -161,7 +161,7 @@ export default function ProjectsDashboard() {
             className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl"
             style={{ background: "rgba(255,255,255,0.05)" }}
           >
-            <KeyRound size={26} className="text-[#03A9F4]" />
+            <KeyRound size={26} className="text-[#03A1FE]" />
           </div>
           {query.trim() && visibleProjects.length > 0 ? (
             <>
@@ -192,7 +192,7 @@ export default function ProjectsDashboard() {
             <Link
               key={project.id}
               href={`/dashboard/projects/${project.id}`}
-              className="relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#1a1a1a] p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#03A9F4]/60 hover:shadow-[0px_8px_25px_0px_rgba(3,169,244,0.2)] cursor-pointer md:p-6"
+              className="relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#1a1a1a] p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#03A1FE]/60 hover:shadow-[0px_8px_25px_0px_rgba(3, 161, 254,0.2)] cursor-pointer md:p-6"
               style={{ boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", textDecoration: "none" }}
             >
               <span
@@ -201,7 +201,7 @@ export default function ProjectsDashboard() {
                   background:
                     project.status === "Archived"
                       ? "transparent"
-                      : "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                      : "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                   color: "#ffffff",
                 }}
               >
@@ -222,7 +222,7 @@ export default function ProjectsDashboard() {
                     title={label}
                     className="flex items-center gap-1.5 text-gray-300"
                   >
-                    <Icon size={18} className="text-[#03A9F4]" />
+                    <Icon size={18} className="text-[#03A1FE]" />
                     <span className="text-sm font-medium">{count}</span>
                   </div>
                 ))}

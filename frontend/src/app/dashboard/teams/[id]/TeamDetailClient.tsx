@@ -23,7 +23,7 @@ const POPPINS = "Poppins, sans-serif";
 
 const TYPE_PRESET = {
   AI_RESEARCH: { icon: "brain"  as const, bg: "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)" },
-  ENGINEERING:  { icon: "code"   as const, bg: "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)" },
+  ENGINEERING:  { icon: "code"   as const, bg: "linear-gradient(135deg, #03A1FE 0%, #006AB3 100%)" },
   ADMIN:        { icon: "shield" as const, bg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)" },
 };
 
@@ -256,7 +256,7 @@ export default function TeamDetailClient() {
                   className="flex w-full items-center justify-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95 sm:w-auto"
                   style={{
                     borderRadius: "20px",
-                    background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
+                    background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
                     boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.55)",
                     fontFamily: POPPINS,
                     fontSize: "14px",
