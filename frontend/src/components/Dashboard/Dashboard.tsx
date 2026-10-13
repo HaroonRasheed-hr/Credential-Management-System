@@ -42,7 +42,7 @@ function getModuleStats(project: Project): ModuleStat[] {
 function ProjectCardSkeleton() {
   return (
     <div
-      className="relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#1a1a1a] p-4 md:p-6"
+      className="relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#0b1b2b] p-4 md:p-6"
       style={{ boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)" }}
     >
       <div className="h-5 w-3/4 animate-pulse rounded-xl bg-white/5" />
@@ -192,7 +192,7 @@ export default function ProjectsDashboard() {
             <Link
               key={project.id}
               href={`/dashboard/projects/${project.id}`}
-              className="relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#1a1a1a] p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#03A1FE]/60 hover:shadow-[0px_8px_25px_0px_rgba(3, 161, 254,0.2)] cursor-pointer md:p-6"
+              className="relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#0b1b2b] p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#03A1FE]/60 hover:shadow-[0px_8px_25px_0px_rgba(3, 161, 254,0.2)] cursor-pointer md:p-6"
               style={{ boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", textDecoration: "none" }}
             >
               <span
