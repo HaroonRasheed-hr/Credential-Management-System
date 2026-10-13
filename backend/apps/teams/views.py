@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -58,6 +59,50 @@ class TeamListCreateView(APIView):
             'Team created.',
             data=TeamDetailSerializer(team).data,
             status=201,
+        )
+
+
+class OrganizationMembersView(APIView):
+    """GET /api/v1/teams/members/ — list members across visible teams."""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        teams = Team.objects.all()
+        if request.user.role != 'ADMIN':
+            teams = teams.filter(
+                Q(created_by=request.user) | Q(members__user=request.user)
+            ).distinct()
+
+        memberships = (
+            TeamMember.objects.filter(team__in=teams)
+            .select_related('team', 'user')
+            .order_by('user__username', '-team__created_at', 'team__name')
+        )
+
+        members_by_user = {}
+        for membership in memberships:
+            user_id = str(membership.user_id)
+            member = members_by_user.get(user_id)
+            if member is None:
+                member = {
+                    'memberId': str(membership.id),
+                    'userId': user_id,
+                    'username': membership.user.username,
+                    'email': membership.user.email,
+                    'role': membership.role,
+                    'teams': [],
+                }
+                members_by_user[user_id] = member
+
+            member['teams'].append({
+                'id': str(membership.team_id),
+                'name': membership.team.name,
+            })
+
+        return success_response(
+            'Organization members retrieved.',
+            data=list(members_by_user.values()),
         )
 
 

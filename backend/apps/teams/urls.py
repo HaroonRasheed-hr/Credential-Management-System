@@ -10,6 +10,11 @@ urlpatterns = [
         name='team-list',
     ),
     path(
+        'members/',
+        views.OrganizationMembersView.as_view(),
+        name='organization-members',
+    ),
+    path(
         '<uuid:team_id>/',
         views.TeamDetailView.as_view(),
         name='team-detail',

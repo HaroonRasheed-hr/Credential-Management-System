@@ -26,52 +26,9 @@ export function useOrgMembers(): UseOrgMembersReturn {
     setLoading(true);
     setError(null);
     try {
-      const listRes = await api.get("/api/v1/teams/");
-      const teams: { id: string; name: string }[] =
-        listRes.data?.data?.results ?? listRes.data?.data ?? [];
-
-      if (!Array.isArray(teams) || teams.length === 0) {
-        setData([]);
-        setLoading(false);
-        return;
-      }
-
-      const detailResults = await Promise.allSettled(
-        teams.map((t) => api.get(`/api/v1/teams/${t.id}/`))
-      );
-
-      // Map: userId → OrgMember (merge team tags for same user)
-      const byUser = new Map<string, OrgMember>();
-
-      detailResults.forEach((result, i) => {
-        if (result.status !== "fulfilled") return;
-        const team = teams[i];
-        const members: {
-          id: string;
-          user: { id: string; username: string; email: string };
-          role: "ADMIN" | "DEVELOPER";
-        }[] = result.value.data?.data?.members ?? result.value.data?.members ?? [];
-
-        members.forEach((m) => {
-          const existing = byUser.get(m.user.id);
-          if (existing) {
-            if (!existing.teams.find((t) => t.id === team.id)) {
-              existing.teams.push({ id: team.id, name: team.name });
-            }
-          } else {
-            byUser.set(m.user.id, {
-              memberId: m.id,
-              userId: m.user.id,
-              username: m.user.username,
-              email: m.user.email,
-              role: m.role,
-              teams: [{ id: team.id, name: team.name }],
-            });
-          }
-        });
-      });
-
-      setData(Array.from(byUser.values()));
+      const res = await api.get("/api/v1/teams/members/");
+      const members: OrgMember[] = res.data?.data ?? [];
+      setData(Array.isArray(members) ? members : []);
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Failed to load org members");
     } finally {
