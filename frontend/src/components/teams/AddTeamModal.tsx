@@ -23,7 +23,7 @@ const ICONS: { value: TeamType; label: string; bg: string; hint?: string }[] = [
   {
     value: "ENGINEERING",
     label: "Engineering",
-    bg: "linear-gradient(135deg, #57C8E7 0%, #3E5FAA 100%)",
+    bg: "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)",
   },
   {
     value: "ADMIN",
@@ -155,8 +155,8 @@ export default function AddTeamModal({ onClose, onSubmit }: Props) {
                     onClick={() => setSelectedIcon(opt)}
                     className="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200"
                     style={{
-                      background: isActive ? "rgba(87,200,231,0.10)" : "rgba(255,255,255,0.04)",
-                      border: isActive ? "1px solid #57C8E7" : "1px solid rgba(255,255,255,0.10)",
+                      background: isActive ? "rgba(3,169,244,0.10)" : "rgba(255,255,255,0.04)",
+                      border: isActive ? "1px solid #03A9F4" : "1px solid rgba(255,255,255,0.10)",
                       cursor: "pointer",
                       textAlign: "left",
                     }}
@@ -212,7 +212,7 @@ export default function AddTeamModal({ onClose, onSubmit }: Props) {
             className="w-full text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-60 sm:w-auto"
             style={{
               fontFamily: POPPINS,
-              background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+              background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
               border: "none",
               borderRadius: "20px",

@@ -24,7 +24,7 @@ import { isAdmin as checkIsAdmin } from "@/lib/auth";
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const POPPINS = "Poppins, sans-serif";
-const GRADIENT_BG = "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)";
+const GRADIENT_BG = "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)";
 
 const TABLE_COLS_ADMIN = [
   "Device Name",
@@ -207,7 +207,7 @@ function PasswordCell({
         disabled={isRevealing}
         style={{ color: "rgba(255,255,255,0.35)", background: "none", border: "none", cursor: isRevealing ? "not-allowed" : "pointer", padding: 4, borderRadius: 6, lineHeight: 0 }}
         aria-label={isRevealed ? "Hide" : "Show"}
-        onMouseEnter={(e) => { if (!isRevealing) { (e.currentTarget as HTMLButtonElement).style.color = "#57C8E7"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; } }}
+        onMouseEnter={(e) => { if (!isRevealing) { (e.currentTarget as HTMLButtonElement).style.color = "#03A9F4"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; } }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.35)"; (e.currentTarget as HTMLButtonElement).style.background = "none"; }}
       >
         {isRevealing ? <Loader2 size={14} className="animate-spin" /> : isRevealed ? <EyeOff size={14} /> : <Eye size={14} />}
@@ -220,7 +220,7 @@ function PasswordCell({
           onClick={() => onCopy(revealKey, plaintext)}
           style={{ color: isCopied ? "#4ade80" : "rgba(255,255,255,0.35)", background: "none", border: "none", cursor: "pointer", padding: 4, borderRadius: 6, lineHeight: 0 }}
           aria-label={isCopied ? "Copied" : "Copy"}
-          onMouseEnter={(e) => { if (!isCopied) { (e.currentTarget as HTMLButtonElement).style.color = "#57C8E7"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; } }}
+          onMouseEnter={(e) => { if (!isCopied) { (e.currentTarget as HTMLButtonElement).style.color = "#03A9F4"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; } }}
           onMouseLeave={(e) => { if (!isCopied) { (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.35)"; (e.currentTarget as HTMLButtonElement).style.background = "none"; } }}
         >
           {isCopied ? <Check size={14} /> : <Copy size={14} />}
@@ -696,13 +696,13 @@ export default function DeviceCredentialsPage() {
       {/* Table / empty state */}
       {loading ? (
         <div style={{ borderRadius: 20, border: "1px solid rgba(255,255,255,0.10)", background: "rgba(255,255,255,0.04)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", padding: "80px 24px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-          <Loader2 size={28} color="#57C8E7" className="animate-spin" />
+          <Loader2 size={28} color="#03A9F4" className="animate-spin" />
           <p style={{ color: "rgba(255,255,255,0.38)", fontSize: 14, margin: 0 }}>Loading device credentials…</p>
         </div>
       ) : devices.length === 0 ? (
         <div style={{ borderRadius: 20, border: "1px solid rgba(255,255,255,0.10)", background: "rgba(255,255,255,0.04)", boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)", padding: "80px 24px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-          <div style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(87,200,231,0.08)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
-            <Monitor size={26} color="#57C8E7" />
+          <div style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(3,169,244,0.08)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+            <Monitor size={26} color="#03A9F4" />
           </div>
           <p style={{ color: "#fff", fontSize: 15, fontWeight: 500, margin: "0 0 4px" }}>No devices added yet</p>
           <p style={{ color: "rgba(255,255,255,0.38)", fontSize: 13, margin: isAdmin ? "0 0 24px" : 0 }}>
@@ -782,7 +782,7 @@ export default function DeviceCredentialsPage() {
                             <button type="button" onClick={() => openEdit(dev)}
                               style={{ color: "rgba(255,255,255,0.40)", background: "none", border: "none", cursor: "pointer", padding: 4, borderRadius: 6, lineHeight: 0 }}
                               aria-label="Edit device"
-                              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#57C8E7"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
+                              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#03A9F4"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
                               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.40)"; (e.currentTarget as HTMLButtonElement).style.background = "none"; }}
                             ><Pencil size={15} /></button>
 

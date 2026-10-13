@@ -152,7 +152,7 @@ export default function TeamsPage() {
                 className="flex items-center gap-2 font-bold text-white transition-all duration-200 hover:brightness-110 active:scale-95"
                 style={{
                   borderRadius: "20px",
-                  background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+                  background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
                   boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                   fontFamily: POPPINS,
                   fontSize: "14px",

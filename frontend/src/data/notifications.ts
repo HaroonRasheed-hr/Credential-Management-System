@@ -22,7 +22,7 @@ export const MODULE_CONFIG: Record<
     bg: string;
   }
 > = {
-  Project: { icon: FolderKanban, bg: "linear-gradient(135deg, #57C8E7 0%, #3E5FAA 100%)" },
+  Project: { icon: FolderKanban, bg: "linear-gradient(135deg, #03A9F4 0%, #086FB7 100%)" },
   "Env Variables": { icon: KeyRound, bg: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)" },
   "License Keys": { icon: FileLock, bg: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)" },
   "Admin Credentials": { icon: ShieldCheck, bg: "linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)" },

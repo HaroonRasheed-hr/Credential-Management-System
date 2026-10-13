@@ -237,7 +237,7 @@ export default function AddMemberModal({ teamName, teamType, onClose, onSubmit }
                 <div
                   className="flex items-center gap-2 rounded-full px-5 py-2.5"
                   style={{
-                    background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+                    background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
                     display: "inline-flex",
                   }}
                 >
@@ -262,13 +262,13 @@ export default function AddMemberModal({ teamName, teamType, onClose, onSubmit }
                         fontFamily: POPPINS,
                         border: isActive ? "none" : "1px solid rgba(255,255,255,0.12)",
                         background: isActive
-                          ? "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)"
+                          ? "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)"
                           : "rgba(255,255,255,0.05)",
                         color: isActive ? "#ffffff" : "rgba(255,255,255,0.50)",
                         cursor: "pointer",
                       }}
                       onMouseEnter={(e) => {
-                        if (!isActive) (e.currentTarget as HTMLButtonElement).style.borderColor = "#57C8E7";
+                        if (!isActive) (e.currentTarget as HTMLButtonElement).style.borderColor = "#03A9F4";
                       }}
                       onMouseLeave={(e) => {
                         if (!isActive) (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)";
@@ -311,7 +311,7 @@ export default function AddMemberModal({ teamName, teamType, onClose, onSubmit }
             className="w-full text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-60 sm:w-auto"
             style={{
               fontFamily: POPPINS,
-              background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+              background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
               border: "none",
               borderRadius: "20px",

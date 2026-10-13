@@ -39,11 +39,11 @@ const CARD =
 const ROLE_BADGE: Record<string, string> = {
   Admin: "bg-purple-500/20 text-purple-300",
   ADMIN: "bg-purple-500/20 text-purple-300",
-  Developer: "bg-blue-500/20 text-[#57C8E7]",
-  DEVELOPER: "bg-blue-500/20 text-[#57C8E7]",
+  Developer: "bg-blue-500/20 text-[#03A9F4]",
+  DEVELOPER: "bg-blue-500/20 text-[#03A9F4]",
 };
 
-const GRADIENT_BG = "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)";
+const GRADIENT_BG = "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)";
 const OUTLINE_BTN =
   "inline-flex w-full items-center justify-center gap-2 rounded-[20px] border border-white/20 px-6 py-3 font-semibold text-white transition-all duration-200 hover:bg-white/5 sm:w-auto sm:px-8 sm:py-4";
 
@@ -87,7 +87,7 @@ const MODULE_BADGE: Record<string, string> = {
   "Admin Credentials": "bg-purple-500/20 text-purple-300",
   "App Users": "bg-teal-500/20 text-teal-300",
   Team: "bg-pink-500/20 text-pink-300",
-  Project: "bg-[#57C8E7]/20 text-[#57C8E7]",
+  Project: "bg-[#03A9F4]/20 text-[#03A9F4]",
 };
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -272,7 +272,7 @@ export default function AdminDashboard() {
                 value={deletePassword}
                 onChange={(e) => { setDeletePassword(e.target.value); setDeleteError(""); }}
                 placeholder="Enter project password"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pr-12 text-sm text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#57C8E7] focus:ring-2 focus:ring-[#57C8E7]/30"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pr-12 text-sm text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30"
                 autoFocus
               />
               <button
@@ -350,8 +350,8 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
         {[
           {
-            icon: <FolderOpen size={22} className="text-[#57C8E7]" />,
-            bg: "bg-[#57C8E7]/10",
+            icon: <FolderOpen size={22} className="text-[#03A9F4]" />,
+            bg: "bg-[#03A9F4]/10",
             value: displayProjects.length,
             label: "Total Projects",
           },
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
         ].map((s) => (
           <div
             key={s.label}
-            className={`${CARD} group cursor-default p-4 transition-all duration-200 hover:border-[#57C8E7]/40 sm:p-5`}
+            className={`${CARD} group cursor-default p-4 transition-all duration-200 hover:border-[#03A9F4]/40 sm:p-5`}
           >
             <div
               className={`mb-3 flex h-9 w-9 items-center justify-center rounded-xl sm:h-10 sm:w-10 ${s.bg}`}
@@ -439,7 +439,7 @@ export default function AdminDashboard() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search projects..."
-              className="w-full rounded-xl border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-sm text-white placeholder-gray-500 outline-none transition-all duration-200 focus:border-[#57C8E7] focus:ring-1 focus:ring-[#57C8E7] sm:w-64"
+              className="w-full rounded-xl border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-sm text-white placeholder-gray-500 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-1 focus:ring-[#03A9F4] sm:w-64"
             />
           </div>
         </div>
@@ -507,11 +507,11 @@ export default function AdminDashboard() {
                           <button
                             type="button"
                             onClick={() => router.push(`/dashboard/projects/${project.id}`)}
-                            className="flex items-center gap-2 font-medium text-white transition-colors duration-150 hover:text-[#57C8E7]"
+                            className="flex items-center gap-2 font-medium text-white transition-colors duration-150 hover:text-[#03A9F4]"
                           >
                             <FolderOpen
                               size={16}
-                              className="shrink-0 text-[#57C8E7]"
+                              className="shrink-0 text-[#03A9F4]"
                             />
                             {project.name}
                           </button>
@@ -539,7 +539,7 @@ export default function AdminDashboard() {
                               type="button"
                               onClick={() => togglePasswordVisibility(projectId)}
                               disabled={isRevealing}
-                              className="text-gray-500 transition-colors duration-200 hover:text-[#57C8E7] disabled:opacity-50"
+                              className="text-gray-500 transition-colors duration-200 hover:text-[#03A9F4] disabled:opacity-50"
                               aria-label={isVisible ? "Hide password" : "Show password"}
                             >
                               {isRevealing ? (
@@ -605,14 +605,14 @@ export default function AdminDashboard() {
                                   )
                                 }
                                 aria-label="View project"
-                                className="text-gray-400 transition-colors duration-200 hover:text-[#57C8E7]"
+                                className="text-gray-400 transition-colors duration-200 hover:text-[#03A9F4]"
                               >
                                 <Eye size={16} />
                               </button>
                               <button
                                 onClick={() => setEditingProject(project)}
                                 aria-label="Edit project"
-                                className="text-gray-400 transition-colors duration-200 hover:text-[#57C8E7]"
+                                className="text-gray-400 transition-colors duration-200 hover:text-[#03A9F4]"
                               >
                                 <Pencil size={16} />
                               </button>
@@ -653,7 +653,7 @@ export default function AdminDashboard() {
             <button
               onClick={() => router.push("/dashboard/notifications")}
               className="text-sm font-medium transition-colors duration-200 hover:opacity-80"
-              style={{ color: "#57C8E7" }}
+              style={{ color: "#03A9F4" }}
             >
               View All →
             </button>
@@ -739,7 +739,7 @@ export default function AdminDashboard() {
             <button
               onClick={() => router.push("/dashboard/teams")}
               className="text-sm font-medium transition-colors duration-200 hover:opacity-80"
-              style={{ color: "#57C8E7" }}
+              style={{ color: "#03A9F4" }}
             >
               View All →
             </button>
@@ -762,7 +762,7 @@ export default function AdminDashboard() {
                 return (
                   <div
                     key={member.userId}
-                    className={`${CARD} group p-4 transition-all duration-200 hover:border-[#57C8E7]/40`}
+                    className={`${CARD} group p-4 transition-all duration-200 hover:border-[#03A9F4]/40`}
                   >
                     <div className="flex items-center gap-3">
                       <div

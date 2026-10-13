@@ -101,8 +101,8 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
         )}
 
         {/* Header */}
-        <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-[#57C8E7]/15">
-          <FileText size={22} className="text-[#57C8E7]" />
+        <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-[#03A9F4]/15">
+          <FileText size={22} className="text-[#03A9F4]" />
         </div>
         <h2 className="mt-4 text-xl font-bold text-white">Export Activity Report</h2>
         <p className="mt-1 text-sm text-gray-400">
@@ -127,7 +127,7 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
                 setProjectId(e.target.value);
                 setValidationError(null);
               }}
-              className="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 pr-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#57C8E7] focus:ring-2 focus:ring-[#57C8E7]/30 disabled:opacity-50 [color-scheme:dark]"
+              className="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 pr-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30 disabled:opacity-50 [color-scheme:dark]"
             >
               <option value={ALL_PROJECTS} style={{ background: "#1a1a1a", color: "#ffffff" }}>
                 {projectsLoading ? "Loading projects…" : "All Projects"}
@@ -180,7 +180,7 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
                   setFromDate(e.target.value);
                   setValidationError(null);
                 }}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#57C8E7] focus:ring-2 focus:ring-[#57C8E7]/30 [color-scheme:dark]"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30 [color-scheme:dark]"
               />
             </div>
           </div>
@@ -204,7 +204,7 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
                   setToDate(e.target.value);
                   setValidationError(null);
                 }}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#57C8E7] focus:ring-2 focus:ring-[#57C8E7]/30 [color-scheme:dark]"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-9 text-sm text-white outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30 [color-scheme:dark]"
               />
             </div>
           </div>
@@ -251,7 +251,7 @@ export default function ExportReportModal({ isOpen, onClose }: Props) {
             disabled={isExporting || !fromDate || !toDate}
             className="inline-flex w-full items-center justify-center gap-2 rounded-[20px] px-6 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             style={{
-              background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+              background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
               boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
             }}
           >

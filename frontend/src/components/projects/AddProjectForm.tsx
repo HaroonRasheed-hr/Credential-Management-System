@@ -101,7 +101,7 @@ export default function AddProjectForm({ isOpen, onClose, onAdd, editItem }: Add
   }
 
   const inputBase =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#57C8E7] focus:ring-2 focus:ring-[#57C8E7]/30 disabled:opacity-60 disabled:cursor-not-allowed";
+    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-200 focus:border-[#03A9F4] focus:ring-2 focus:ring-[#03A9F4]/30 disabled:opacity-60 disabled:cursor-not-allowed";
 
   return (
     /* Backdrop */
@@ -211,13 +211,13 @@ export default function AddProjectForm({ isOpen, onClose, onAdd, editItem }: Add
                       className={`px-6 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 disabled:pointer-events-none disabled:opacity-60 ${
                         isSelected
                           ? "border-transparent text-white"
-                          : "bg-white/5 border-white/10 text-white/50 hover:border-[#57C8E7]/60 hover:text-white/80"
+                          : "bg-white/5 border-white/10 text-white/50 hover:border-[#03A9F4]/60 hover:text-white/80"
                       }`}
                       style={
                         isSelected
                           ? {
                               background:
-                                "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+                                "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
                             }
                           : {}
                       }
@@ -282,7 +282,7 @@ export default function AddProjectForm({ isOpen, onClose, onAdd, editItem }: Add
               disabled={isSubmitting}
               className="flex w-full items-center justify-center gap-2 rounded-[20px] px-8 py-3 text-sm font-bold text-white transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               style={{
-                background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+                background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
                 boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.25)",
                 fontFamily: "Poppins, sans-serif",
               }}

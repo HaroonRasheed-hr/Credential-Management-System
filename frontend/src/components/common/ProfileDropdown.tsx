@@ -15,7 +15,7 @@ import type { Role } from "@/lib/auth";
 
 const ROLE_BADGE: Record<Role, string> = {
   Admin: "bg-purple-500/20 text-purple-300",
-  Developer: "bg-blue-500/20 text-[#57C8E7]",
+  Developer: "bg-blue-500/20 text-[#03A9F4]",
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -95,7 +95,7 @@ export default function ProfileDropdown() {
         <div
           className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-white"
           style={{
-            background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+            background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
           }}
         >
           {getInitials(user.name)}
@@ -130,7 +130,7 @@ export default function ProfileDropdown() {
             <div
               className="flex h-14 w-14 items-center justify-center rounded-full text-lg font-bold text-white"
               style={{
-                background: "linear-gradient(180deg, #57C8E7 0%, #3E5FAA 100%)",
+                background: "linear-gradient(180deg, #03A9F4 0%, #086FB7 100%)",
               }}
             >
               {getInitials(user.name)}
