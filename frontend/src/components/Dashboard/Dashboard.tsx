@@ -119,7 +119,7 @@ export default function ProjectsDashboard() {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="flex h-[35px] w-full items-center justify-center gap-2 px-8 py-4 text-base font-bold text-white transition-all duration-200 hover:scale-[1.02] hover:brightness-110 sm:h-[55px] sm:max-w-[230px] sm:text-lg"
+            className="flex h-[35px] w-full cursor-pointer items-center justify-center gap-2 px-8 py-4 text-base font-bold text-white transition-all duration-200 hover:scale-[1.02] hover:brightness-110 sm:h-[55px] sm:max-w-[230px] sm:text-lg"
             style={{
               borderRadius: "20px",
               background: "linear-gradient(180deg, #03A1FE 0%, #006AB3 100%)",
