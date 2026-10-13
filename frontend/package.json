@@ -1,0 +1,29 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "node -e \"const fs=require('fs'),p=require('path');(function r(d){for(const f of fs.readdirSync(d)){const fp=p.join(d,f);fs.statSync(fp).isDirectory()?r(fp):f==='index.txt'&&fs.unlinkSync(fp);}})('out')\"",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^1.18.0",
+    "lucide-react": "^0.525.0",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^20.19.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "9.39.4",
+    "eslint-config-next": "^15.5.19",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
+  }
+}
