@@ -1,4 +1,3 @@
-﻿# project-credentials-management-portal-2026-06
 # Skillwala Credentials Management Portal - User Guide
 
 This guide explains how the website works from a normal user's point of view. It
