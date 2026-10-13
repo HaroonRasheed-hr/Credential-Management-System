@@ -1,0 +1,33 @@
+# Frontend
+frontend/node_modules
+frontend/.next
+frontend/out
+frontend/.env.local
+
+# Backend
+backend/venv
+backend/__pycache__
+backend/**/__pycache__
+backend/*.pyc
+backend/**/*.pyc
+backend/db.sqlite3
+backend/.env
+backend/logs/
+
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+.env.example
+docker-compose.yml
+Dockerfile*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+Docs/
+README.md

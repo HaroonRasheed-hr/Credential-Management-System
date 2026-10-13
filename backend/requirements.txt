@@ -1,0 +1,19 @@
+# ── Production ─────────────────────────────────────────────────────────────────
+Django>=4.2,<5.0
+djangorestframework>=3.14,<4.0
+djangorestframework-simplejwt>=5.3,<6.0
+django-redis>=5.4,<6.0
+redis>=5.0,<6.0
+python-decouple>=3.8,<4.0
+cryptography>=41.0
+django-cors-headers>=4.3,<5.0
+gunicorn>=22.0,<24.0
+
+# ── Development & Testing ──────────────────────────────────────────────────────
+pytest>=7.4
+pytest-django>=4.7
+factory-boy>=3.3
+# Dev-only: surfaces SQL/N+1 queries locally. Not installed in the production
+# image and only activated when DEBUG=True (see config/settings/base.py).
+django-debug-toolbar>=4.3,<6.0
+reportlab

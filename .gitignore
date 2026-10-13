@@ -1,0 +1,26 @@
+# Logs — keep the folder, ignore all log files
+logs/*.log
+logs/*.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env*
+backend/.env
+frontend/.env.local
+
+# Frontend build artifacts
+frontend/node_modules
+frontend/.next
+frontend/out
+
+# Backend
+backend/venv
+backend/__pycache__
+backend/**/__pycache__
+backend/*.pyc
+backend/**/*.pyc
+backend/db.sqlite3.vscode/

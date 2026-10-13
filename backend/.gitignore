@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+wheels/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Django
+*.log
+logs/django.txt
+logs/django.txt.*
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_root/
+
+# Migrations (keep __init__.py, ignore generated migration files)
+# Uncomment the line below if you prefer to not track migrations
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Secrets / keys
+*.pem
+*.key
+*.p12
+*.pfx
+secret_key.txt
+
+# Testing & coverage
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+coverage.xml
+*.cover
+nosetests.xml
+test-results/
+
+# IDE / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Redis dump
+dump.rdb
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+desktop.ini
