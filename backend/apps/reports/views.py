@@ -1,6 +1,6 @@
 import logging
 import uuid
-from datetime import date, datetime, timezone
+from datetime import date
 
 from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticated

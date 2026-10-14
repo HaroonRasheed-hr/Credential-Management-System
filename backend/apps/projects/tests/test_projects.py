@@ -11,14 +11,11 @@ Covers:
 """
 
 from django.test import TestCase
-from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.activity_log.models import ActivityLog
-from apps.app_users.models import AppUser
-from apps.env_variables.models import EnvVariable
 from apps.projects.encryption import EncryptionService
 from apps.projects.models import Project, ProjectMember
 from apps.users.models import User

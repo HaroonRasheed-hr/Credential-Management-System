@@ -11,7 +11,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.test')
 
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
-from rest_framework import status
 from rest_framework.test import APITestCase
 
 from apps.authentication.services import AuthService
@@ -60,7 +59,7 @@ class LockoutEndpointTests(APITestCase):
 
     def test_lockout_sets_redis_flag(self):
         self._fail(3)
-        locked = cache.get(f'login_lockout:target@xis.ai')
+        locked = cache.get('login_lockout:target@xis.ai')
         self.assertTrue(locked)
 
     def test_lockout_sets_db_lockout_until(self):

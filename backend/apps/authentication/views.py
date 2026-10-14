@@ -3,7 +3,6 @@ import logging
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.throttling import AnonRateThrottle
 from rest_framework.views import APIView
-from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.views import TokenRefreshView as _BaseTokenRefreshView
 
 from utils.responses import error_response, success_response

@@ -4,13 +4,13 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, status
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 from apps.activity_log.models import ActivityLog
 from apps.projects.models import Project, ProjectMember
-from apps.projects.permissions import CanDeleteProjectRecord, IsProjectAdmin, IsProjectMember
+from apps.projects.permissions import IsProjectAdmin, IsProjectMember
 from apps.projects.serializers import (
     AddMemberSerializer,
     ProjectDetailSerializer,
