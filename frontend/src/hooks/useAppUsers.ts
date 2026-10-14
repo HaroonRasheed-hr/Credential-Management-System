@@ -43,25 +43,45 @@ export function useAppUsers(projectId: string): UseAppUsersReturn {
   const pid = projectId;
 
   const fetchUsers = useCallback(async () => {
-    if (!pid) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(`/api/v1/projects/${pid}/app-users/`);
-      const body = res.data;
-      const results = body.data?.results ?? body.data ?? [];
-      setData(Array.isArray(results) ? results : []);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load app users");
-    } finally {
-      setLoading(false);
-    }
+    if (!pid) return null;
+    const res = await api.get(`/api/v1/projects/${pid}/app-users/`);
+    const body = res.data;
+    const results = body.data?.results ?? body.data ?? [];
+    return Array.isArray(results) ? results : [];
   }, [pid]);
 
   useEffect(() => {
-    fetchUsers();
+    let active = true;
+    fetchUsers()
+      .then((result) => {
+        if (!active || !result) return;
+        setData(result);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load app users");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchUsers]);
+
+  const refetch = useCallback(() => {
+    if (!pid) return;
+    setLoading(true);
+    setError(null);
+    return fetchUsers()
+      .then((result) => {
+        if (result) setData(result);
+      })
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load app users");
+      })
+      .finally(() => setLoading(false));
+  }, [fetchUsers, pid]);
 
   const createAppUser = async (payload: {
     username: string;
@@ -104,7 +124,7 @@ export function useAppUsers(projectId: string): UseAppUsersReturn {
     data,
     loading,
     error,
-    refetch: fetchUsers,
+    refetch,
     createAppUser,
     updateAppUser,
     deleteAppUser,

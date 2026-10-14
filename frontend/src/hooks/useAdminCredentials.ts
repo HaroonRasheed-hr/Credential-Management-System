@@ -43,25 +43,45 @@ export function useAdminCredentials(projectId: string): UseAdminCredentialsRetur
   const pid = projectId;
 
   const fetchCreds = useCallback(async () => {
-    if (!pid) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(`/api/v1/projects/${pid}/admin-credentials/`);
-      const body = res.data;
-      const results = body.data?.results ?? body.data ?? [];
-      setData(Array.isArray(results) ? results : []);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load admin credentials");
-    } finally {
-      setLoading(false);
-    }
+    if (!pid) return null;
+    const res = await api.get(`/api/v1/projects/${pid}/admin-credentials/`);
+    const body = res.data;
+    const results = body.data?.results ?? body.data ?? [];
+    return Array.isArray(results) ? results : [];
   }, [pid]);
 
   useEffect(() => {
-    fetchCreds();
+    let active = true;
+    fetchCreds()
+      .then((result) => {
+        if (!active || !result) return;
+        setData(result);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load admin credentials");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchCreds]);
+
+  const refetch = useCallback(() => {
+    if (!pid) return;
+    setLoading(true);
+    setError(null);
+    return fetchCreds()
+      .then((result) => {
+        if (result) setData(result);
+      })
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load admin credentials");
+      })
+      .finally(() => setLoading(false));
+  }, [fetchCreds, pid]);
 
   const createAdminCredential = async (payload: {
     admin_panel_url: string;
@@ -104,7 +124,7 @@ export function useAdminCredentials(projectId: string): UseAdminCredentialsRetur
     data,
     loading,
     error,
-    refetch: fetchCreds,
+    refetch,
     createAdminCredential,
     updateAdminCredential,
     deleteAdminCredential,

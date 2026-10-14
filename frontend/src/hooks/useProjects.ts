@@ -39,10 +39,9 @@ export function useApiProjects(): UseApiProjectsReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchProjects = useCallback(async (signal?: AbortSignal) => {
-    setLoading(true);
-    setError(null);
     try {
       const res = await api.get("/api/v1/projects/", { signal });
+      setError(null);
       const body = res.data;
       const results = body.data?.results ?? body.results ?? body.data ?? [];
       setData(Array.isArray(results) ? results : []);
@@ -60,6 +59,12 @@ export function useApiProjects(): UseApiProjectsReturn {
     const controller = new AbortController();
     fetchProjects(controller.signal);
     return () => controller.abort();
+  }, [fetchProjects]);
+
+  const refetch = useCallback((signal?: AbortSignal) => {
+    setLoading(true);
+    setError(null);
+    return fetchProjects(signal);
   }, [fetchProjects]);
 
   const createProject = async (payload: Partial<ApiProject>): Promise<ApiProject> => {
@@ -81,5 +86,5 @@ export function useApiProjects(): UseApiProjectsReturn {
     setData((prev) => prev.filter((p) => p.id !== id));
   };
 
-  return { data, loading, error, refetch: fetchProjects, createProject, updateProject, deleteProject };
+  return { data, loading, error,   refetch, createProject, updateProject, deleteProject };
 }

@@ -7,7 +7,8 @@
     "build": "next build",
     "postbuild": "node -e \"const fs=require('fs'),p=require('path');(function r(d){for(const f of fs.readdirSync(d)){const fp=p.join(d,f);fs.statSync(fp).isDirectory()?r(fp):f==='index.txt'&&fs.unlinkSync(fp);}})('out')\"",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "axios": "^1.18.0",
@@ -22,7 +23,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "eslint": "9.39.4",
-    "eslint-config-next": "^14.2.35",
+    "eslint-config-next": "^16.4.0",
     "rimraf": "^6.1.3",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"

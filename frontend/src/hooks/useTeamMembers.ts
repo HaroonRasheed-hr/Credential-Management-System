@@ -30,25 +30,45 @@ export function useTeamMembers(projectId: string): UseTeamMembersReturn {
   const pid = projectId;
 
   const fetchMembers = useCallback(async () => {
-    if (!pid) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(`/api/v1/projects/${pid}/team/`);
-      const body = res.data;
-      const results = body.data?.results ?? body.data ?? [];
-      setData(Array.isArray(results) ? results : []);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load team members");
-    } finally {
-      setLoading(false);
-    }
+    if (!pid) return null;
+    const res = await api.get(`/api/v1/projects/${pid}/team/`);
+    const body = res.data;
+    const results = body.data?.results ?? body.data ?? [];
+    return Array.isArray(results) ? results : [];
   }, [pid]);
 
   useEffect(() => {
-    fetchMembers();
+    let active = true;
+    fetchMembers()
+      .then((members) => {
+        if (!active || !members) return;
+        setData(members);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load team members");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchMembers]);
+
+  const refetch = useCallback(() => {
+    if (!pid) return;
+    setLoading(true);
+    setError(null);
+    return fetchMembers()
+      .then((members) => {
+        if (members) setData(members);
+      })
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load team members");
+      })
+      .finally(() => setLoading(false));
+  }, [fetchMembers, pid]);
 
   const addMember = async (
     userId: string,
@@ -72,7 +92,7 @@ export function useTeamMembers(projectId: string): UseTeamMembersReturn {
     data,
     loading,
     error,
-    refetch: fetchMembers,
+    refetch,
     addMember,
     removeMember,
   };

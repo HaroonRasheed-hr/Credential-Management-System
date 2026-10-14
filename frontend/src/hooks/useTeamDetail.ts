@@ -55,24 +55,44 @@ export function useTeamDetail(teamId: string): UseTeamDetailReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchTeam = useCallback(async () => {
-    if (!teamId) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(`/api/v1/teams/${teamId}/`);
-      const body = res.data;
-      setData(body.data ?? body);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load team");
-    } finally {
-      setLoading(false);
-    }
+    if (!teamId) return null;
+    const res = await api.get(`/api/v1/teams/${teamId}/`);
+    const body = res.data;
+    return body.data ?? body;
   }, [teamId]);
 
   useEffect(() => {
-    fetchTeam();
+    let active = true;
+    fetchTeam()
+      .then((team) => {
+        if (!active || !team) return;
+        setData(team);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load team");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchTeam]);
+
+  const refetch = useCallback(() => {
+    if (!teamId) return;
+    setLoading(true);
+    setError(null);
+    return fetchTeam()
+      .then((team) => {
+        if (team) setData(team);
+      })
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load team");
+      })
+      .finally(() => setLoading(false));
+  }, [fetchTeam, teamId]);
 
   const createAndAddMember = async (input: NewMemberInput): Promise<ApiOrgMember> => {
     const res = await api.post(`/api/v1/teams/${teamId}/members/create-user/`, {
@@ -157,7 +177,7 @@ export function useTeamDetail(teamId: string): UseTeamDetailReturn {
     data,
     loading,
     error,
-    refetch: fetchTeam,
+    refetch,
     createAndAddMember,
     addMember,
     updateMember,

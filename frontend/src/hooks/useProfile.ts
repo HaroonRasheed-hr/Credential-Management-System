@@ -49,23 +49,45 @@ export function useProfile(): UseProfileReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchProfile = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get('/api/v1/settings/profile/');
-      setProfile(res.data.data ?? res.data);
-    } catch (e: unknown) {
-      const msg =
-        (e as { response?: { data?: { message?: string } } })?.response?.data?.message ??
-        'Failed to load profile.';
-      setError(msg);
-    } finally {
-      setLoading(false);
-    }
+    const res = await api.get('/api/v1/settings/profile/');
+    return res.data.data ?? res.data;
   }, []);
 
   useEffect(() => {
-    fetchProfile();
+    let active = true;
+    fetchProfile()
+      .then(setProfile)
+      .then(() => {
+        if (active) {
+          setError(null);
+          setLoading(false);
+        }
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+      const msg =
+        (e as { response?: { data?: { message?: string } } })?.response?.data?.message ??
+        'Failed to load profile.';
+        setError(msg);
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [fetchProfile]);
+
+  const refetch = useCallback(() => {
+    setLoading(true);
+    setError(null);
+    return fetchProfile()
+      .then(setProfile)
+      .catch((e: unknown) => {
+        const msg =
+          (e as { response?: { data?: { message?: string } } })?.response?.data?.message ??
+          'Failed to load profile.';
+        setError(msg);
+      })
+      .finally(() => setLoading(false));
   }, [fetchProfile]);
 
   const updateProfile = async (payload: UpdateProfilePayload): Promise<ProfileData> => {
@@ -79,5 +101,5 @@ export function useProfile(): UseProfileReturn {
     await api.post('/api/v1/settings/change-password/', payload);
   };
 
-  return { profile, loading, error, refetch: fetchProfile, updateProfile, changePassword };
+  return { profile, loading, error, refetch, updateProfile, changePassword };
 }

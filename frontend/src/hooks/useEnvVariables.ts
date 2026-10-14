@@ -47,25 +47,45 @@ export function useEnvVariables(projectId: string): UseEnvVariablesReturn {
   const pid = projectId;
 
   const fetchVars = useCallback(async () => {
-    if (!pid) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(`/api/v1/projects/${pid}/env-variables/`);
-      const body = res.data;
-      const results = body.data?.results ?? body.results ?? body.data ?? [];
-      setData(Array.isArray(results) ? results : []);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load environment variables");
-    } finally {
-      setLoading(false);
-    }
+    if (!pid) return null;
+    const res = await api.get(`/api/v1/projects/${pid}/env-variables/`);
+    const body = res.data;
+    const results = body.data?.results ?? body.results ?? body.data ?? [];
+    return Array.isArray(results) ? results : [];
   }, [pid]);
 
   useEffect(() => {
-    fetchVars();
+    let active = true;
+    fetchVars()
+      .then((result) => {
+        if (!active || !result) return;
+        setData(result);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load environment variables");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchVars]);
+
+  const refetch = useCallback(() => {
+    if (!pid) return;
+    setLoading(true);
+    setError(null);
+    return fetchVars()
+      .then((result) => {
+        if (result) setData(result);
+      })
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load environment variables");
+      })
+      .finally(() => setLoading(false));
+  }, [fetchVars, pid]);
 
   const createEnvVariable = async (payload: {
     key: string;
@@ -110,7 +130,7 @@ export function useEnvVariables(projectId: string): UseEnvVariablesReturn {
     data,
     loading,
     error,
-    refetch: fetchVars,
+    refetch,
     createEnvVariable,
     updateEnvVariable,
     deleteEnvVariable,

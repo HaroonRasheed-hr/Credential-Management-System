@@ -33,23 +33,40 @@ export function useTeams(): UseTeamsReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchTeams = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get("/api/v1/teams/");
-      const body = res.data;
-      const results = body.data?.results ?? body.data ?? [];
-      setData(Array.isArray(results) ? results : []);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load teams");
-    } finally {
-      setLoading(false);
-    }
+    const res = await api.get("/api/v1/teams/");
+    const body = res.data;
+    const results = body.data?.results ?? body.data ?? [];
+    return Array.isArray(results) ? results : [];
   }, []);
 
   useEffect(() => {
-    fetchTeams();
+    let active = true;
+    fetchTeams()
+      .then((teams) => {
+        if (!active) return;
+        setData(teams);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load teams");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [fetchTeams]);
+
+  const refetch = useCallback(() => {
+    setLoading(true);
+    setError(null);
+    return fetchTeams()
+      .then(setData)
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load teams");
+      })
+      .finally(() => setLoading(false));
   }, [fetchTeams]);
 
   const createTeam = async (payload: {
@@ -78,5 +95,5 @@ export function useTeams(): UseTeamsReturn {
     setData((prev) => prev.filter((t) => t.id !== id));
   };
 
-  return { data, loading, error, refetch: fetchTeams, createTeam, updateTeam, deleteTeam };
+  return { data, loading, error,   refetch, createTeam, updateTeam, deleteTeam };
 }

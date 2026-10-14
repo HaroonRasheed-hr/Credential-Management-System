@@ -15,25 +15,46 @@ export function useProjectDetail(projectId: string): UseProjectDetailReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchDetail = useCallback(async () => {
-    if (!projectId) return;
-
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(`/api/v1/projects/${projectId}/`);
-      const body = res.data;
-      setData(body.data ?? body);
-    } catch (e: unknown) {
-      const msg = (e as { response?: { data?: { message?: string } } })?.response?.data?.message;
-      setError(msg ?? (e instanceof Error ? e.message : "Failed to load project."));
-    } finally {
-      setLoading(false);
-    }
+    if (!projectId) return null;
+    const res = await api.get(`/api/v1/projects/${projectId}/`);
+    const body = res.data;
+    return body.data ?? body;
   }, [projectId]);
 
   useEffect(() => {
-    fetchDetail();
+    let active = true;
+    fetchDetail()
+      .then((project) => {
+        if (!active || !project) return;
+        setData(project);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+      const msg = (e as { response?: { data?: { message?: string } } })?.response?.data?.message;
+        setError(msg ?? (e instanceof Error ? e.message : "Failed to load project."));
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchDetail]);
 
-  return { data, loading, error, refetch: fetchDetail };
+  const refetch = useCallback(() => {
+    if (!projectId) return;
+    setLoading(true);
+    setError(null);
+    return fetchDetail()
+      .then((project) => {
+        if (project) setData(project);
+      })
+      .catch((e: unknown) => {
+        const msg = (e as { response?: { data?: { message?: string } } })?.response?.data?.message;
+        setError(msg ?? (e instanceof Error ? e.message : "Failed to load project."));
+      })
+      .finally(() => setLoading(false));
+  }, [fetchDetail, projectId]);
+
+  return { data, loading, error, refetch };
 }

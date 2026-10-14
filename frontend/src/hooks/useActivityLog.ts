@@ -35,28 +35,57 @@ export function useActivityLog(
   const pid = projectId;
 
   const fetchLog = useCallback(async () => {
-    if (!pid) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get(
-        `/api/v1/projects/${pid}/activity-log/?page=${page}`
-      );
-      const body = res.data;
-      const results = body.data?.results ?? body.results ?? body.data ?? [];
-      setData(Array.isArray(results) ? results : []);
-      setCount(body.data?.count ?? body.count ?? results.length);
-    } catch (e: unknown) {
-      if (e instanceof Error) setError(e.message);
-      else setError("Failed to load activity log");
-    } finally {
-      setLoading(false);
-    }
+    if (!pid) return null;
+    const res = await api.get(
+      `/api/v1/projects/${pid}/activity-log/?page=${page}`
+    );
+    const body = res.data;
+    const results = body.data?.results ?? body.results ?? body.data ?? [];
+    return {
+      data: Array.isArray(results) ? results : [],
+      count: body.data?.count ?? body.count ?? results.length,
+    };
   }, [pid, page]);
 
   useEffect(() => {
-    fetchLog();
+    let active = true;
+    fetchLog()
+      .then((result) => {
+        if (!active) return;
+        if (result) {
+          setData(result.data);
+          setCount(result.count);
+        }
+        setError(null);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load activity log");
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetchLog]);
 
-  return { data, count, loading, error, refetch: fetchLog };
+  const refetch = useCallback(() => {
+    if (!pid) return;
+    setLoading(true);
+    setError(null);
+    return fetchLog()
+      .then((result) => {
+        if (result) {
+          setData(result.data);
+          setCount(result.count);
+        }
+      })
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load activity log");
+      })
+      .finally(() => setLoading(false));
+  }, [fetchLog, pid]);
+
+  return { data, count, loading, error, refetch };
 }

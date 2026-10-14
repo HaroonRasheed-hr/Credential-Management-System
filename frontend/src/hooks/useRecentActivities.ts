@@ -42,12 +42,11 @@ export function useRecentActivities(limit = 20): UseRecentActivitiesReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchActivities = useCallback(async (signal?: AbortSignal) => {
-    setLoading(true);
-    setError(null);
     try {
       const res = await api.get(`/api/v1/reports/recent-activity/?limit=${limit}`, {
         signal,
-      });
+      }      );
+      setError(null);
       const raw: Array<{
         id: string;
         project: { id: string; name: string };
@@ -92,5 +91,11 @@ export function useRecentActivities(limit = 20): UseRecentActivitiesReturn {
     return () => controller.abort();
   }, [fetchActivities]);
 
-  return { data, loading, error, refetch: fetchActivities };
+  const refetch = useCallback((signal?: AbortSignal) => {
+    setLoading(true);
+    setError(null);
+    return fetchActivities(signal);
+  }, [fetchActivities]);
+
+  return { data, loading, error, refetch };
 }

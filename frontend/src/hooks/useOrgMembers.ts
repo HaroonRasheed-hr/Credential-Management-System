@@ -23,22 +23,40 @@ export function useOrgMembers(): UseOrgMembersReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetch = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get("/api/v1/teams/members/");
-      const members: OrgMember[] = res.data?.data ?? [];
-      setData(Array.isArray(members) ? members : []);
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Failed to load org members");
-    } finally {
-      setLoading(false);
-    }
+    const res = await api.get("/api/v1/teams/members/");
+    const members: OrgMember[] = res.data?.data ?? [];
+    return Array.isArray(members) ? members : [];
   }, []);
 
   useEffect(() => {
-    fetch();
+    let active = true;
+    fetch()
+      .then((members) => {
+        if (!active) return;
+        setData(members);
+        setError(null);
+        setLoading(false);
+      })
+      .catch((e: unknown) => {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : "Failed to load org members");
+        setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [fetch]);
 
-  return { data, loading, error, refetch: fetch };
+  const refetch = useCallback(() => {
+    setLoading(true);
+    setError(null);
+    return fetch()
+      .then(setData)
+      .catch((e: unknown) => {
+        setError(e instanceof Error ? e.message : "Failed to load org members");
+      })
+      .finally(() => setLoading(false));
+  }, [fetch]);
+
+  return { data, loading, error, refetch };
 }
