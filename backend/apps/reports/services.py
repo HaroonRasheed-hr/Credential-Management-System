@@ -2,19 +2,6 @@
 import io
 from datetime import date, datetime, timedelta, timezone
 
-# Pakistan Standard Time is a fixed UTC+5 offset (no daylight saving).
-PKT = timezone(timedelta(hours=5))
-
-
-def _to_pkt(dt: datetime) -> datetime:
-    """Convert a datetime to Pakistan Standard Time (UTC+5).
-
-    Naive datetimes are assumed to be in UTC.
-    """
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(PKT)
-
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
@@ -28,6 +15,19 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+
+# Pakistan Standard Time is a fixed UTC+5 offset (no daylight saving).
+PKT = timezone(timedelta(hours=5))
+
+
+def _to_pkt(dt: datetime) -> datetime:
+    """Convert a datetime to Pakistan Standard Time (UTC+5).
+
+    Naive datetimes are assumed to be in UTC.
+    """
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(PKT)
 
 # ── Black & white palette ─────────────────────────────────────────────────────
 # Report is rendered strictly in black and white (no colour). Light grey is used

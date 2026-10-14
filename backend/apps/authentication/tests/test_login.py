@@ -78,7 +78,7 @@ class LoginSuccessTests(APITestCase):
         self.assertIsNone(self.user.lockout_until)
 
     def test_admin_user_can_login(self):
-        admin = User.objects.create_user(
+        User.objects.create_user(
             email='admin@xis.ai', username='adminuser', password='AdminPass1!', role=User.Role.ADMIN
         )
         res = self.client.post(LOGIN_URL, {'email': 'admin@xis.ai', 'password': 'AdminPass1!'}, format='json')
