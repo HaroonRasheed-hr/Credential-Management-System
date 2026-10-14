@@ -1,24 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { AlertCircle } from "lucide-react";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
+import { useRealPathId } from "@/hooks/useRealPathId";
 import ProjectDetailOverview from "@/components/projects/ProjectDetailOverview";
 import type { Project } from "@/data/projects";
 
 export default function ProjectDetailClient() {
-  const pathname = usePathname();
-  const [projectId, setProjectId] = useState("");
-
-  useEffect(() => {
-    // useParams() returns the static-export placeholder "_" in Next.js static exports
-    // because the router context is anchored to the pre-generated shell.
-    // window.location.pathname always reflects the real browser URL.
-    const parts = window.location.pathname.replace(/\/$/, "").split("/");
-    setProjectId(parts[parts.length - 1] ?? "");
-  }, [pathname]);
-
+  const projectId = useRealPathId();
   const { data, loading, error } = useProjectDetail(projectId);
 
   if (loading) {

@@ -35,14 +35,15 @@ export default function AllNotificationsPage() {
     };
   }, [refetch]);
 
-  // Keep the current page in range as the live feed grows or shrinks.
-  useEffect(() => {
-    setPage((p) => Math.min(p, totalPages));
-  }, [totalPages]);
+  const currentPage = Math.min(page, totalPages);
 
   const pageItems = useMemo(
-    () => activities.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
-    [activities, page]
+    () =>
+      activities.slice(
+        (currentPage - 1) * PAGE_SIZE,
+        currentPage * PAGE_SIZE
+      ),
+    [activities, currentPage]
   );
 
   return (
@@ -151,15 +152,15 @@ export default function AllNotificationsPage() {
         {activities.length > PAGE_SIZE && (
           <div className="mb-12 mt-4 flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs text-gray-500">
-              Showing {(page - 1) * PAGE_SIZE + 1}–
-              {Math.min(page * PAGE_SIZE, activities.length)} of{" "}
+              Showing {(currentPage - 1) * PAGE_SIZE + 1}–
+              {Math.min(currentPage * PAGE_SIZE, activities.length)} of{" "}
               {activities.length}
             </p>
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
+                onClick={() => setPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
                 className="rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40"
                 style={{
                   background: "rgba(255,255,255,0.05)",
@@ -170,12 +171,12 @@ export default function AllNotificationsPage() {
                 Previous
               </button>
               <span className="text-sm font-medium text-gray-400">
-                Page {page} of {totalPages}
+                Page {currentPage} of {totalPages}
               </span>
               <button
                 type="button"
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
+                onClick={() => setPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
                 className="rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40"
                 style={{
                   background: "rgba(255,255,255,0.05)",

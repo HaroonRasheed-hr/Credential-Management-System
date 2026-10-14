@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AlertCircle, ChevronRight, Eye, EyeOff, Globe, Loader2, X } from "lucide-react";
 
 interface AdminCredential {
@@ -36,25 +36,15 @@ export default function AddAdminCredentialForm({
   projectName = "E-Commerce Platform",
   editItem,
 }: AddAdminCredentialFormProps) {
-  const [panelName, setPanelName] = useState("");
-  const [adminPanelUrl, setAdminPanelUrl] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [notes, setNotes] = useState("");
+  const [panelName, setPanelName] = useState(() => editItem?.panelName ?? "");
+  const [adminPanelUrl, setAdminPanelUrl] = useState(() => editItem?.url ?? "");
+  const [username, setUsername] = useState(() => editItem?.username ?? "");
+  const [password, setPassword] = useState(() => editItem?.password ?? "");
+  const [notes, setNotes] = useState(() => editItem?.notes ?? "");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isOpen && editItem) {
-      setPanelName(editItem.panelName);
-      setAdminPanelUrl(editItem.url);
-      setUsername(editItem.username);
-      setPassword(editItem.password);
-      setNotes(editItem.notes);
-    }
-  }, [isOpen, editItem]);
 
   if (!isOpen) return null;
 

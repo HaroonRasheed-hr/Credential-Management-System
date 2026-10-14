@@ -242,6 +242,7 @@ export default function ProjectsDashboard() {
       </div>
 
       <AddProjectForm
+        key="new"
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onAdd={handleAddProject}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AlertCircle, ChevronRight, Eye, EyeOff, Loader2, X } from "lucide-react";
 
 interface AppUser {
@@ -34,23 +34,16 @@ export default function AddAppUserForm({
   projectName = "E-Commerce Platform",
   editItem,
 }: AddAppUserFormProps) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [passwordOrToken, setPasswordOrToken] = useState("");
-  const [roleInApp, setRoleInApp] = useState("");
+  const [username, setUsername] = useState(() => editItem?.username ?? "");
+  const [email, setEmail] = useState(() => editItem?.email ?? "");
+  const [passwordOrToken, setPasswordOrToken] = useState(
+    () => editItem?.password ?? ""
+  );
+  const [roleInApp, setRoleInApp] = useState(() => editItem?.role ?? "");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isOpen && editItem) {
-      setUsername(editItem.username);
-      setEmail(editItem.email);
-      setPasswordOrToken(editItem.password);
-      setRoleInApp(editItem.role);
-    }
-  }, [isOpen, editItem]);
 
   if (!isOpen) return null;
 

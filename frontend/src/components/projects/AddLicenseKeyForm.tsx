@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AlertCircle, ChevronRight, Eye, EyeOff, Calendar, Loader2, X } from "lucide-react";
 
 interface LicenseKey {
@@ -38,23 +38,16 @@ export default function AddLicenseKeyForm({
   projectName = "E-Commerce Platform",
   editItem,
 }: AddLicenseKeyFormProps) {
-  const [licenseName, setLicenseName] = useState("");
-  const [vendor, setVendor] = useState("");
-  const [licenseKey, setLicenseKey] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
+  const [licenseName, setLicenseName] = useState(() => editItem?.name ?? "");
+  const [vendor, setVendor] = useState(() => editItem?.vendor ?? "");
+  const [licenseKey, setLicenseKey] = useState(() => editItem?.key ?? "");
+  const [expiryDate, setExpiryDate] = useState(() =>
+    editItem ? toDateInputValue(editItem.expiryDate) : ""
+  );
   const [showLicenseKey, setShowLicenseKey] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isOpen && editItem) {
-      setLicenseName(editItem.name);
-      setVendor(editItem.vendor);
-      setLicenseKey(editItem.key);
-      setExpiryDate(toDateInputValue(editItem.expiryDate));
-    }
-  }, [isOpen, editItem]);
 
   if (!isOpen) return null;
 

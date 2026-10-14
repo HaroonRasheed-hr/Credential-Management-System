@@ -225,6 +225,7 @@ export default function AdminDashboard() {
 
     {editingProject && (
       <AddProjectForm
+        key={editingProject.id}
         isOpen={true}
         onClose={() => setEditingProject(null)}
         onAdd={(updated) => { updateProject(updated); setEditingProject(null); }}

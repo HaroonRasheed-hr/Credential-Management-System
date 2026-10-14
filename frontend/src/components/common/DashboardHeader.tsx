@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
 import BrandLogo from "@/components/common/BrandLogo";
 import ProfileDropdown from "@/components/common/ProfileDropdown";
@@ -100,7 +100,20 @@ export default function DashboardHeader() {
     rawPathname.length > 1 && rawPathname.endsWith("/")
       ? rawPathname.slice(0, -1)
       : rawPathname;
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuState, setMenuState] = useState({ pathname, isOpen: false });
+  const isMenuOpen = menuState.pathname === pathname && menuState.isOpen;
+  const setIsMenuOpen = useCallback<React.Dispatch<React.SetStateAction<boolean>>>(
+    (next) =>
+      setMenuState((current) => {
+        const currentOpen =
+          current.pathname === pathname && current.isOpen;
+        return {
+          pathname,
+          isOpen: typeof next === "function" ? next(currentOpen) : next,
+        };
+      }),
+    [pathname]
+  );
   const headerRef = useRef<HTMLElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
@@ -110,11 +123,6 @@ export default function DashboardHeader() {
     user?.role === "Developer"
       ? NAV_LINKS.filter((link) => !link.adminOnly)
       : NAV_LINKS;
-
-  // Close drawer whenever the route changes
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
 
   // Close on outside click (must be outside both header and drawer)
   useEffect(() => {
@@ -132,7 +140,7 @@ export default function DashboardHeader() {
     };
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, setIsMenuOpen]);
 
   // Close on Escape key
   useEffect(() => {
@@ -142,7 +150,7 @@ export default function DashboardHeader() {
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, setIsMenuOpen]);
 
   return (
     <>

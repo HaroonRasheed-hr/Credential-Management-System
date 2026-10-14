@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   Brain,
@@ -16,6 +16,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useSearch, matchesQuery } from "@/context/SearchContext";
 import { isAdmin } from "@/lib/auth";
 import { useTeamDetail, type NewMemberInput, type UpdateMemberInput } from "@/hooks/useTeamDetail";
+import { useRealPathId } from "@/hooks/useRealPathId";
 import MembersTable from "@/components/teams/MembersTable";
 import AddMemberModal from "@/components/teams/AddMemberModal";
 
@@ -72,18 +73,10 @@ function SkeletonTable() {
 }
 
 export default function TeamDetailClient() {
-  const pathname = usePathname();
   const router = useRouter();
   const { user } = useAuth();
   const canManage = isAdmin(user?.role);
-  const [teamId, setTeamId] = useState("");
-
-  useEffect(() => {
-    // useParams() returns the static-export placeholder "_" in Next.js static exports;
-    // window.location.pathname always reflects the real browser URL.
-    const parts = window.location.pathname.replace(/\/$/, "").split("/");
-    setTeamId(parts[parts.length - 1] ?? "");
-  }, [pathname]);
+  const teamId = useRealPathId();
 
   const { data: team, loading, error, createAndAddMember, updateMember, removeMember, revealPassword } =
     useTeamDetail(teamId);
