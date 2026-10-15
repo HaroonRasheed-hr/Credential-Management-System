@@ -173,6 +173,15 @@ export default function SettingsPage() {
   const [profileErrors, setProfileErrors] = useState<Record<string, string>>({});
   const [profileSaved, setProfileSaved] = useState(false);
   const [profileSaving, setProfileSaving] = useState(false);
+  const [previousProfile, setPreviousProfile] = useState(profile);
+
+  if (profile && profile !== previousProfile) {
+    setPreviousProfile(profile);
+    setFirstName(profile.first_name);
+    setLastName(profile.last_name);
+    setUsername(profile.username);
+    setEmailField(profile.email);
+  }
 
   // Clear the "profile saved" confirmation after 3s, clearing the timer on
   // unmount so it can't fire into an unmounted component.
@@ -181,15 +190,6 @@ export default function SettingsPage() {
     const t = setTimeout(() => setProfileSaved(false), 3000);
     return () => clearTimeout(t);
   }, [profileSaved]);
-
-  // Pre-fill form once profile loads from API
-  useEffect(() => {
-    if (!profile) return;
-    setFirstName(profile.first_name);
-    setLastName(profile.last_name);
-    setUsername(profile.username);
-    setEmailField(profile.email);
-  }, [profile]);
 
   // ── Password form ──
   const [currentPw, setCurrentPw] = useState("");

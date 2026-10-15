@@ -13,6 +13,12 @@ const api: AxiosInstance = axios.create({
   timeout: 15000,
 });
 
+function redirectToLogin() {
+  if (typeof window !== "undefined") {
+    window.location.assign(new URL("/login", window.location.href).toString());
+  }
+}
+
 // ── Request interceptor — attach Bearer token ──────────────────────────────
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = loadAccessToken();
@@ -37,7 +43,7 @@ api.interceptors.response.use(
 
       if (!refresh) {
         clearTokens();
-        if (typeof window !== "undefined") window.location.href = "/login";
+        redirectToLogin();
         return Promise.reject(error);
       }
 
@@ -61,7 +67,7 @@ api.interceptors.response.use(
         return api(original);
       } catch {
         clearTokens();
-        if (typeof window !== "undefined") window.location.href = "/login";
+        redirectToLogin();
         return Promise.reject(error);
       } finally {
         isRefreshing = false;

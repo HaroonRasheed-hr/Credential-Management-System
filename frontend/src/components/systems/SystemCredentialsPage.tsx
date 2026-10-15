@@ -534,8 +534,6 @@ export default function DeviceCredentialsPage() {
 
   // ── Fetch devices on mount ─────────────────────────────────────────────────
   const fetchDevices = useCallback(async () => {
-    setLoading(true);
-    setLoadError("");
     try {
       const res = await api.get<{ data: DeviceCredential[] | { results: DeviceCredential[] } }>(
         "/api/v1/devices/"
@@ -545,6 +543,7 @@ export default function DeviceCredentialsPage() {
         ? payload
         : (payload as { results: DeviceCredential[] })?.results ?? [];
       setDevices(list);
+      setLoadError("");
     } catch {
       setLoadError("Failed to load device credentials.");
     } finally {
@@ -552,7 +551,15 @@ export default function DeviceCredentialsPage() {
     }
   }, []);
 
-  useEffect(() => { fetchDevices(); }, [fetchDevices]);
+  useEffect(() => {
+    let active = true;
+    void Promise.resolve().then(() => {
+      if (active) fetchDevices();
+    });
+    return () => {
+      active = false;
+    };
+  }, [fetchDevices]);
 
   // ── Add / Edit ─────────────────────────────────────────────────────────────
   async function handleSave(data: FormData, id?: string) {

@@ -89,17 +89,16 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
   // returns to the projects list) refreshes the data in place without a
   // skeleton flash. `inFlightRef` dedupes overlapping syncs.
   const inFlightRef = useRef(false);
-  const refetch = useCallback(
+  const loadProjects = useCallback(
     async (opts?: { silent?: boolean }) => {
       if (!user) {
+        await Promise.resolve();
         setProjects([]);
         setLoading(false);
         return;
       }
       if (inFlightRef.current) return;
       inFlightRef.current = true;
-      if (!opts?.silent) setLoading(true);
-      setError(null);
       try {
         // Cache-bust + no-cache so a re-sync after a mutation (e.g. archiving a
         // project on its detail page) never reads a stale list from the browser
@@ -108,6 +107,7 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
           params: { _t: Date.now() },
           headers: { "Cache-Control": "no-cache" },
         });
+        setError(null);
         const body = res.data;
         const results: ApiProject[] = body.data?.results ?? body.results ?? body.data ?? [];
         setProjects(Array.isArray(results) ? results.map(mapApiProject) : []);
@@ -120,12 +120,28 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
     },
     [user]
   );
+  const refetch = useCallback(
+    (opts?: { silent?: boolean }) => {
+      if (!opts?.silent) {
+        setLoading(true);
+        setError(null);
+      }
+      return loadProjects(opts);
+    },
+    [loadProjects]
+  );
 
   // Load on mount / user change. Counts (env, license, members) are refreshed
   // by callers via refetch() when returning to list/dashboard views.
   useEffect(() => {
-    refetch();
-  }, [refetch]);
+    let active = true;
+    void Promise.resolve().then(() => {
+      if (active) loadProjects();
+    });
+    return () => {
+      active = false;
+    };
+  }, [loadProjects]);
 
   // Keep the projects list live. In the static-export build, navigating back
   // from a project detail page can restore a cached render, so a status change
@@ -142,18 +158,26 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
       skipInitialSync.current = false;
       return;
     }
-    if (isProjectsListPath(pathname)) refetch({ silent: true });
-  }, [pathname, user, refetch]);
+    let active = true;
+    void Promise.resolve().then(() => {
+      if (active && isProjectsListPath(pathname)) {
+        loadProjects({ silent: true });
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [pathname, user, loadProjects]);
 
   useEffect(() => {
     const onPopState = () => {
       if (user && isProjectsListPath(window.location.pathname)) {
-        refetch({ silent: true });
+        loadProjects({ silent: true });
       }
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
-  }, [user, refetch]);
+  }, [user, loadProjects]);
 
   // ── Mutators ─────────────────────────────────────────────────────────────
 

@@ -87,7 +87,9 @@ export function useRecentActivities(limit = 20): UseRecentActivitiesReturn {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetchActivities(controller.signal);
+    void Promise.resolve().then(() => {
+      if (!controller.signal.aborted) fetchActivities(controller.signal);
+    });
     return () => controller.abort();
   }, [fetchActivities]);
 

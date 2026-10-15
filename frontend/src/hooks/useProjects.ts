@@ -57,7 +57,9 @@ export function useApiProjects(): UseApiProjectsReturn {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetchProjects(controller.signal);
+    void Promise.resolve().then(() => {
+      if (!controller.signal.aborted) fetchProjects(controller.signal);
+    });
     return () => controller.abort();
   }, [fetchProjects]);
 

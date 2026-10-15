@@ -8,11 +8,14 @@ import {
   useMemo,
   useRef,
   useState,
+  type Dispatch,
+  type SetStateAction,
 } from "react";
 import { useAuth } from "@/context/AuthContext";
 import type { Role } from "@/lib/auth";
 import { canReceiveNotification } from "@/lib/permissions";
 import type { NotificationModule } from "@/data/notifications";
+import { useStorageSnapshot } from "@/hooks/useStorageSnapshot";
 
 // Activities are persisted so the notification feed / unread counts survive a
 // role switch in the same browser — letting a higher role log in afterwards and
@@ -44,6 +47,18 @@ export interface ActivityEntry {
   actorRole: Role | null;
   createdAt: number;
   read: boolean;
+}
+
+function parseActivitySnapshot(
+  snapshot: string | null | undefined
+): ActivityEntry[] {
+  if (!snapshot) return [];
+  try {
+    const parsed = JSON.parse(snapshot) as ActivityEntry[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
 }
 
 interface LogInput {
@@ -81,28 +96,36 @@ export function timeAgo(ts: number): string {
 
 export function ActivityProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
-  const [activities, setActivities] = useState<ActivityEntry[]>([]);
+  const activitiesSnapshot = useStorageSnapshot(ACTIVITY_KEY, "session");
+  const [activitiesState, setActivitiesState] = useState<{
+    snapshot: string | null | undefined;
+    value: ActivityEntry[];
+  }>({ snapshot: undefined, value: [] });
+  const activities =
+    activitiesState.snapshot === activitiesSnapshot
+      ? activitiesState.value
+      : parseActivitySnapshot(activitiesSnapshot);
+  const setActivities = useCallback<Dispatch<SetStateAction<ActivityEntry[]>>>(
+    (action) => {
+      setActivitiesState((current) => {
+        const currentActivities =
+          current.snapshot === activitiesSnapshot
+            ? current.value
+            : parseActivitySnapshot(activitiesSnapshot);
+        return {
+          snapshot: activitiesSnapshot,
+          value:
+            typeof action === "function"
+              ? action(currentActivities)
+              : action,
+        };
+      });
+    },
+    [activitiesSnapshot]
+  );
   const [toasts, setToasts] = useState<ActivityEntry[]>([]);
-  const [hydrated, setHydrated] = useState(false);
   const nextId = useRef(1);
-
-  // Hydrate the persisted activity/notification feed on mount (client only).
-  useEffect(() => {
-    try {
-      const raw = window.sessionStorage.getItem(ACTIVITY_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as ActivityEntry[];
-        if (Array.isArray(parsed)) {
-          setActivities(parsed);
-          nextId.current =
-            parsed.reduce((max, a) => Math.max(max, a.id), 0) + 1;
-        }
-      }
-    } catch {
-      // corrupt/unavailable storage — start empty
-    }
-    setHydrated(true);
-  }, []);
+  const hydrated = activitiesSnapshot !== undefined;
 
   // Persist after hydration so we never clobber the stored feed with defaults.
   // Only write when the value actually changed, so syncing from another tab's
@@ -128,6 +151,10 @@ export function ActivityProvider({ children }: { children: React.ReactNode }) {
 
   const log = useCallback(
     (input: LogInput) => {
+      nextId.current = Math.max(
+        nextId.current,
+        activities.reduce((max, activity) => Math.max(max, activity.id), 0) + 1
+      );
       const entry: ActivityEntry = {
         id: nextId.current++,
         projectId: input.projectId,
@@ -142,7 +169,7 @@ export function ActivityProvider({ children }: { children: React.ReactNode }) {
       setActivities((prev) => [entry, ...prev]);
       setToasts((prev) => [entry, ...prev]);
     },
-    [user]
+    [activities, setActivities, user]
   );
 
   // Notification hierarchy: an entry is visible to the current viewer when the
@@ -184,14 +211,14 @@ export function ActivityProvider({ children }: { children: React.ReactNode }) {
     };
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
-  }, [canSee]);
+  }, [canSee, setActivities]);
 
   const markAllRead = useCallback(
     () =>
       setActivities((prev) =>
         prev.map((a) => (canSee(a) ? { ...a, read: true } : a))
       ),
-    [canSee]
+    [canSee, setActivities]
   );
 
   const markRead = useCallback(
@@ -199,7 +226,7 @@ export function ActivityProvider({ children }: { children: React.ReactNode }) {
       setActivities((prev) =>
         prev.map((a) => (a.id === id && canSee(a) ? { ...a, read: true } : a))
       ),
-    [canSee]
+    [canSee, setActivities]
   );
 
   const dismissToast = useCallback(

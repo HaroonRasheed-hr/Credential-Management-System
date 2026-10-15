@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const ITEMS_PER_PAGE = 10;
 
@@ -20,12 +20,11 @@ export function usePagination<T>(
   resetKey: string = "",
   itemsPerPage: number = ITEMS_PER_PAGE
 ): UsePaginationResult<T> {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // Reset to page 1 whenever the data source or any filter changes.
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [resetKey]);
+  const [pageState, setPageState] = useState({ page: 1, key: resetKey });
+  const currentPage = pageState.key === resetKey ? pageState.page : 1;
+  const setCurrentPage = (page: number) => {
+    setPageState({ page, key: resetKey });
+  };
 
   const totalItems = items.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));

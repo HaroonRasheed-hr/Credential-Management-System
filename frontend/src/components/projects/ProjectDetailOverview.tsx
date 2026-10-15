@@ -370,6 +370,7 @@ export default function ProjectDetailOverview({ project: initialProject }: Props
       </div>
 
       <EditProjectForm
+        key={currentProject.id}
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         onSave={handleSave}
