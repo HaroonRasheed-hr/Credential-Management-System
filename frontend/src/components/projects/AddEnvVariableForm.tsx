@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AlertCircle, ChevronRight, Loader2, Paperclip, Upload, X } from "lucide-react";
 
 type Environment = "Development" | "Staging" | "Production";
@@ -67,21 +67,17 @@ export default function AddEnvVariableForm({
   projectName = "E-Commerce Platform",
   editItem,
 }: AddEnvVariableFormProps) {
-  const [key, setKey] = useState("");
-  const [environment, setEnvironment] = useState<Environment>("Development");
+  const [key, setKey] = useState(() => editItem?.key ?? "");
+  const [environment, setEnvironment] = useState<Environment>(
+    () => editItem?.environment ?? "Development"
+  );
   const [errors, setErrors] = useState<FormErrors>({});
-  const [attachedFile, setAttachedFile] = useState<AttachedFile | null>(null);
+  const [attachedFile, setAttachedFile] = useState<AttachedFile | null>(
+    () => editItem?.attachedFile ?? null
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isOpen && editItem) {
-      setKey(editItem.key);
-      setEnvironment(editItem.environment);
-      setAttachedFile(editItem.attachedFile ?? null);
-    }
-  }, [isOpen, editItem]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import {
   Brain,
   Code2,
@@ -16,6 +16,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useSearch, matchesQuery } from "@/context/SearchContext";
 import { isAdmin, normalizeEmail } from "@/lib/auth";
 import { usePagination } from "@/hooks/usePagination";
+import { useStorageSnapshot } from "@/hooks/useStorageSnapshot";
 import Pagination from "@/components/common/Pagination";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -62,6 +63,15 @@ const AVATAR_COLORS = [
 // the same browser profile. (Cross-profile sync would require a real backend.)
 const TEAMS_KEY = "pcmp_teams";
 
+function parseTeamsSnapshot(snapshot: string | null | undefined): Team[] {
+  if (!snapshot) return [];
+  try {
+    const parsed = JSON.parse(snapshot) as Team[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -992,29 +1002,36 @@ function AddTeamModal({
 export default function TeamsPage() {
   const { user, accounts, createUser, removeUser } = useAuth();
   const { query } = useSearch();
+  const teamsSnapshot = useStorageSnapshot(TEAMS_KEY, "local");
   // Mirror the rest of the app: only Admins may manage members.
   // Developers (and anyone else) get read-only, masked views.
   const canManage = isAdmin(user?.role);
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teamsState, setTeamsState] = useState<{
+    snapshot: string | null | undefined;
+    value: Team[];
+  }>({ snapshot: undefined, value: [] });
+  const teams =
+    teamsState.snapshot === teamsSnapshot
+      ? teamsState.value
+      : parseTeamsSnapshot(teamsSnapshot);
+  const setTeams: Dispatch<SetStateAction<Team[]>> = (action) => {
+    setTeamsState((current) => {
+      const currentTeams =
+        current.snapshot === teamsSnapshot
+          ? current.value
+          : parseTeamsSnapshot(teamsSnapshot);
+      return {
+        snapshot: teamsSnapshot,
+        value:
+          typeof action === "function" ? action(currentTeams) : action,
+      };
+    });
+  };
   const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isAddTeamModalOpen, setIsAddTeamModalOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<Member | null>(null);
-  const [hydrated, setHydrated] = useState(false);
-
-  // Hydrate from sessionStorage on mount (client only).
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(TEAMS_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as Team[];
-        if (Array.isArray(parsed)) setTeams(parsed);
-      }
-    } catch {
-      // corrupt/unavailable storage — keep empty default
-    }
-    setHydrated(true);
-  }, []);
+  const hydrated = teamsSnapshot !== undefined;
 
   // Persist after hydration so we never overwrite stored data with defaults.
   // Guard the write so a value mirrored in from another tab's `storage` event

@@ -515,6 +515,7 @@ export function EnvironmentVariablesTabContent({
       />
 
       <AddEnvVariableForm
+        key={editingVar?.id ?? "new"}
         isOpen={isModalOpen || editingVar !== null}
         onClose={() => {
           setIsModalOpen(false);

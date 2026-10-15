@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AlertCircle, ChevronRight, Eye, EyeOff, Loader2, X } from "lucide-react";
 import type { Project } from "@/data/projects";
 
@@ -17,22 +17,18 @@ interface AddProjectFormProps {
 }
 
 export default function AddProjectForm({ isOpen, onClose, onAdd, editItem }: AddProjectFormProps) {
-  const [projectName, setProjectName] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState<"Active" | "Archived">("Active");
+  const [projectName, setProjectName] = useState(() => editItem?.name ?? "");
+  const [description, setDescription] = useState(
+    () => editItem?.description ?? ""
+  );
+  const [status, setStatus] = useState<"Active" | "Archived">(
+    () => editItem?.status ?? "Active"
+  );
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isOpen && editItem) {
-      setProjectName(editItem.name);
-      setDescription(editItem.description);
-      setStatus(editItem.status);
-    }
-  }, [isOpen, editItem]);
 
   if (!isOpen) return null;
 

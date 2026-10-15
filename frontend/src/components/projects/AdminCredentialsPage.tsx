@@ -468,6 +468,7 @@ export function AdminCredentialsTabContent({
       />
 
       <AddAdminCredentialForm
+        key={editingCred?.id ?? "new"}
         isOpen={isModalOpen || editingCred !== null}
         onClose={() => { setIsModalOpen(false); setEditingCred(null); }}
         onAdd={editingCred ? (ui) => handleEditCredential({ ...ui, apiId: editingCred.apiId }) : handleAddCredential}

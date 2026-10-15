@@ -36,15 +36,6 @@ export default function EditProjectForm({
     el.style.height = el.scrollHeight + "px";
   }, [description, isOpen]);
 
-  // Re-sync fields whenever a different project is passed in
-  useEffect(() => {
-    setProjectName(project.name);
-    setDescription(project.longDescription);
-    setStatus(project.status);
-    setErrors({});
-    setSubmitError(null);
-  }, [project]);
-
   if (!isOpen) return null;
 
   function handleClose() {

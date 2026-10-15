@@ -497,6 +497,7 @@ export function LicenseKeysTabContent({
       />
 
       <AddLicenseKeyForm
+        key={editingLicense?.id ?? "new"}
         isOpen={isModalOpen || editingLicense !== null}
         onClose={() => { setIsModalOpen(false); setEditingLicense(null); }}
         onAdd={editingLicense ? (ui) => handleEditLicense({ ...ui, apiId: editingLicense.apiId }) : handleAddLicense}

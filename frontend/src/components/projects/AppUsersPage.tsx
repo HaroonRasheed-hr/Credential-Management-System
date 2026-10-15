@@ -431,6 +431,7 @@ export function AppUsersTabContent({
       <Pagination currentPage={currentPage} totalItems={totalItems} itemsPerPage={itemsPerPage} onPageChange={setCurrentPage} />
 
       <AddAppUserForm
+        key={editingUser?.id ?? "new"}
         isOpen={isModalOpen || editingUser !== null}
         onClose={() => { setIsModalOpen(false); setEditingUser(null); }}
         onAdd={editingUser ? (ui) => handleEditUser({ ...ui, apiId: editingUser.apiId }) : handleAddUser}

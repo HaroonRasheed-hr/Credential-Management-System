@@ -381,12 +381,11 @@ function DeviceListSection({
 
   const fetchAssigned = useCallback(async () => {
     if (!projectId) return;
-    setAssignedLoading(true);
-    setAssignedError("");
     try {
       const res = await api.get<{ data: AssignedDevice[] }>(`/api/v1/devices/projects/${projectId}/`);
       const payload = res.data?.data;
       setAssigned(Array.isArray(payload) ? payload : []);
+      setAssignedError("");
     } catch {
       setAssignedError("Failed to load project devices.");
     } finally {
@@ -395,7 +394,13 @@ function DeviceListSection({
   }, [projectId]);
 
   useEffect(() => {
-    fetchAssigned();
+    let active = true;
+    void Promise.resolve().then(() => {
+      if (active) fetchAssigned();
+    });
+    return () => {
+      active = false;
+    };
   }, [fetchAssigned]);
 
   const assignedDeviceIds = new Set(assigned.map((a) => a.device_id));
